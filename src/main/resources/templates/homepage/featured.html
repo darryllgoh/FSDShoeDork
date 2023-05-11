@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/featured.css">
+    <title>Featured</title>
+</head>
+<body>
+    <div th:fragment="featured" class="container-fluid my-5 px-4">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <img src="https://images.unsplash.com/photo-1606890542241-b848582fe5cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80" alt="" class="img-fluid">
+            </div>
+
+            <div class="col-md-6 col-12 d-flex flex-column justify-content-center">
+                <p class="fst-italic pt-3 mb-1 lmt-edt">Limited Edition</p>
+                <h1 style="font-size:72px">BETTER DURABILITY, MORE MILES</h1>
+                <p style="font-size:18px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem est, veritatis tempora maxime omnis suscipit dolor quaerat labore quis dolore, soluta alias necessitatibus, error non officiis et animi aspernatur iste.</p>
+                <a href="/product.html"><button class="btn btn-dark rounded-pill px-4 py-3 featured-btn" type="submit">SHOP NOW</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

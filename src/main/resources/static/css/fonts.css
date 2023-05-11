@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Roboto:wght@400;700&display=swap');
+
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script");
+
+
+/* Add any additional font-related CSS code here, such as font-size or font-weight rules */
+
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+h1, h2, h3, h4, h5, h6, .btn {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+  }
+
+p, li{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.promo-text, label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+  
+
+  
