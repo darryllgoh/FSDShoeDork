@@ -80,7 +80,6 @@ addToBagButton.addEventListener('click', () => {
   if (usSizeSelected == "") {
     let errorMsg = "Please select a size before adding to bag";
     document.querySelector('#addToBagError').innerHTML = errorMsg;; 
-    return;
   }
   const addToBagProduct = addToBag(convertProduct);
   document.querySelector('#addToBagError').innerHTML = "";
@@ -121,9 +120,5 @@ addToBagButton.addEventListener('click', () => {
           alert("Error adding item to Product");
       });
   */
+
 });
-
-
-
-
-
