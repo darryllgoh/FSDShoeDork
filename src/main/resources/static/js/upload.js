@@ -2,6 +2,9 @@ let product = [];
 
 //pull form inputs via API
 function getInput() {
+
+    preventDefault();
+
     const name = document.querySelector("#name").value;
 
     const description = document.querySelector("#description").value;
@@ -18,12 +21,18 @@ function getInput() {
         usSizes.push(usSize[i].value)
     }
 
+    if (usSize.length === 0) {
+        // Array length is 0, show error message
+        alert("Error: Please check/fill-in in the US size checkboxes or the required fields before submitting the form.");
+        return ; // Prevents form submission
+      }
+
     usSizes = usSizes.map(Number);
     console.log(usSizes);
 
     //end of US size conversion
 
-    const color = document.querySelector('input[name="color"]:checked').value; 
+    const color = document.querySelector('input[name="color"]:checked').value;
 
     const price = document.querySelector("#price").valueAsNumber;
 
@@ -32,23 +41,48 @@ function getInput() {
     const imgMain = document.querySelector("#imgMain").value;
 
     const imgHover = document.querySelector("#imgHover").value;
- 
+
     // update product list by combining hard coded product data with form data
     addProduct(name, description, brand, category, usSizes, color, price, SKU, imgMain, imgHover);
-    
+
     //replaced product.push below
 
     console.log(productList);
 
     //pull updated product list to local storage in json
-    localStorage.setItem("productList", JSON.stringify(productList)); 
+    localStorage.setItem("productList", JSON.stringify(productList));
     //- remove above
 
     document.getElementById("productForm").reset();
 
-    alert("Thank you for submitting a product listing!")
-    
-}
+    alert("Thank you for submitting a product listing!");
+
+    const forms = document.querySelectorAll('.needs-validation')
+
+
+} // end of function getFormUploadInput
+
+//Example starter JavaScript for disabling form submissions if there are invalid fields
+
+(() => {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+
 
 //3 local storage (set to Json) (review fetch API)
 //4 test
