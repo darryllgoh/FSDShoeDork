@@ -101,7 +101,7 @@ const renderProductPage = () => {
                     </div>
                 </a>
             </div>
-        </div>
+        </div>       
         `
     }
     document.querySelector("#productList").innerHTML = details;
@@ -128,7 +128,6 @@ const displayProductDetails = (index) => {
     // used storedData to stringify through to product page
     localStorage.setItem("productDetails",JSON.stringify(productController[index]));
 }
-
 
 // FILTERS
 
@@ -161,6 +160,7 @@ function filterProduct() {
         // Check match versus list of selected categories (If no category filter selected, keep all product categories in selection)
         (categoryFilters.length == 0 || categoryFilters.some(filter => filter.value.toLowerCase() === product.category.toLowerCase())) &&
 
+
         // Check match versus list of selected colors (If no color filter selected, keep all product colors in selection)
         (colorFilters.length == 0 || colorFilters.some(filter => filter.value.toLowerCase() === product.color.toLowerCase())) &&
 
@@ -177,12 +177,14 @@ function filterProduct() {
     // Update the product list with the filtered products
     renderProductPage(filteredProducts);
 
+
     // changes between "Load more products" button to No Result output depending on filter result
     if (filteredProducts.length == 0) {
         document.querySelector('.load-more-btn').innerHTML = `<p class="pt-3 pb-5 mb-5">No product matched your filter(s)</p>`;
     } else {
         document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
     }
+
 
 }
 
@@ -192,6 +194,7 @@ function resetFilter() {
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
     }
+
     renderProductPage(productController);
     document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
 }

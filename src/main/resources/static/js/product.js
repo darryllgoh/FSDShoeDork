@@ -76,11 +76,10 @@ const addToBagButton = document.querySelector('#addtoBag');
 
 //Added an event listener to ADD TO BAG button to validate that size button is selected prior to creating addToBagProduct object (for ProductDTO)
 addToBagButton.addEventListener('click', () => {
-
+  
   if (usSizeSelected == "") {
     let errorMsg = "Please select a size before adding to bag";
-    document.querySelector('#addToBagError').innerHTML = errorMsg;;
-    return;
+    document.querySelector('#addToBagError').innerHTML = errorMsg;; 
   }
   const addToBagProduct = addToBag(convertProduct);
   document.querySelector('#addToBagError').innerHTML = "";
@@ -121,4 +120,5 @@ addToBagButton.addEventListener('click', () => {
           alert("Error adding item to Product");
       });
   */
+
 });

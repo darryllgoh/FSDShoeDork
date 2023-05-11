@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box
+}
+
+/* Nav micro-interaction */
+.desktoplink a {
+  position: relative;
+}
+
+.desktoplink a:after {
+  content: "";
+  position: absolute;
+  background-color: #292b2b;
+  height: 3px;
+  width: 0%;
+  left: 0px;
+  bottom: 10px;
+}
+
+/* Remove/update background/border/outline/hover */
+
+.desktoplink a:hover:after {
+  width: 50%;
+  transition: width 0.3s;
+}
+
+.btn-group button {
+  background-color: transparent;
+  border: 1px solid #f8f9fa
+}
+
+.btn-group button:hover {
+  background-color: transparent;
+  border: 1px solid #f8f9fa
+}
+
+.collapsed-btn-group button {
+  background-color: transparent;
+  border: 1px solid #fff
+}
+
+.collapsed-btn-group button:hover {
+  background-color: transparent;
+  border: 1px solid #fff
+}
+
+button.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #fff;
+}
+
+.btn-group a:hover {
+  color: #7c7c7c;
+}
+
+/* Nav item position */
+.desktoplink .aboutus {
+  position: absolute;
+  left: 210px;
+  top: 28px;
+  font-size: 14px;
+}
+
+.desktoplink .shop {
+  position: absolute;
+  left: 310px;
+  top: 28px;
+  font-size: 14px;
+}
+
+/* Navbar Sticky */
+
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+
+/* Search Bar */
+.search-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+.search-container input[type="text"] {
+  padding: 10px 35px 10px 10px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  width: 250px;
+  background-color: #eeeeee;
+  outline: none;
+  transition: width 0.3s ease-in-out;
+}
+
+.search-container input[type="text"].expand {
+  width: 500px;
+}
+
+.search-container button[type="submit"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  color: #333;
+}
+
+.searchbar button {
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* RWD */
+
+@media (max-width: 991px) {
+  .desktopsearch, .desktoplink .aboutus, .desktoplink .shop {
+  display: none;
+  }
+
+  .search-container input[type="text"] {
+    width: 350px;
+  }
+  
+  .search-container input[type="text"].expand {
+    width: 350px;
+  }
+  
+  }
