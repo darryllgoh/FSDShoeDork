@@ -5,11 +5,19 @@
 .profile-img img {
     height: 100%;
     object-fit: cover;
-    object-position: 0px 30%; 
+    object-position: 0px 30%;
 } */
-.our-story-h {
+
+
+.our-story-h, .meet-the-team-h {
     font-size: 60px;
+    letter-spacing: 1px;
 }
+
+/*.meet-the-team-h {
+    font-size: 60px;
+    letter-spacing: 1px;
+}*/
 
 .our-story-p {
     text-align: justify;
@@ -92,7 +100,7 @@
 }
 
 .card .details .socials h4 {
-    color: #fff;  
+    color: #fff;
     margin-top: 10px;
 }
 
@@ -103,80 +111,114 @@
     gap: 10px;
 }
 
+/* RWD */
+@media (max-width: 768px) {
+    .our-story-h, .meet-the-team-h {
+        font-size: 48px;
+    }
+    .our-story-p {
+        font-size: 14px;
+    }
+    .aboutusbanner-desktop img {
+        display: none;
+    }
+}
 
+@media (min-width: 769px) {
+    .aboutusbanner-mobile img {
+        display: none;
+    }
+}
 
-@media screen and (max-width: 576px) {
-
+@media (max-width: 1399px) {
     .card .details .logo {
-        max-width: 100%;
+        display: none;
     }
+}
 
-    .card .details .info {
-        margin-top: 30px;
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .card .details {
+        bottom: -270px;
     }
+    .card:hover .details {
+        bottom: -20px;
+    }
+}
 
+@media (min-width: 992px) and (max-width: 1199px) {
+    .card .details {
+        bottom: -265px;
+    }
+    .card:hover .details {
+        bottom: -20px;
+    }
     .card .details h2 {
-        font-size: 36px;
-        color: #fff;
+        font-size: 22px;
+    }
+    .card .details h3 {
+        font-size: 14px;
+    }
+    .card .details .info {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .card .details .socials h4 {
+        font-size: 22px;
+    }
+    .card .details .socials ul li svg{
+        height: 20px;
+        width: 20px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .card .details {
+        bottom: -240px;
+    }
+    .card:hover .details {
+        bottom: -20px;
+    }
+    .card .details h2 {
+        font-size: 22px;
     }
 
     .card .details h3 {
-        font-size: 30px;
-        color: #fff;
+        font-size: 14px;
     }
-
-    .card .details p {
-        font-size: 18px;
-        color: #fff;
-    }
-
-    .card .details .socials h4 {
-        color: #fff;  
-        margin-top: 10px;
-        font-size: 30px;
-    }
-  }
-
-@media screen and (min-width: 768px) {
-    .card .details .logo {
-        max-width: 100%;
-    }
-
     .card .details .info {
-        margin-top: 30px;
+        font-size: 14px;
+        margin-bottom: 5px;
     }
+    .card .details .socials h4 {
+        font-size: 22px;
+    }
+    .card .details .socials ul li svg{
+        height: 20px;
+        width: 20px;
+    }
+}
 
+@media (min-width: 389px) and (max-width: 499px) {
+    .card .details {
+        bottom: -210px;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 575px) {
+    .card .details {
+        bottom: -250px;
+    }
     .card .details h2 {
-        font-size: 24px;
-        color: #fff;
+        font-size: 30px;
     }
-
     .card .details h3 {
-        font-size: 18px;
-        color: #fff;
+        font-size: 22px;
     }
-
-    .card .details p {
-        font-size: 16px;
-        color: #fff;
-    }
-
-    .card .details .socials h4 {
-        color: #fff;  
-        margin-top: 10px;
-        font-size: 24px;
-    }
-  }
-
-  @media screen and (min-width: 1200px) {
-    .card .details .logo {
-        max-width: 180px;
-    }
-    
     .card .details .info {
-        margin-top: 20px;
+        font-size: 20px;
     }
-  }
-
-  
+    .card .details .socials h4 {
+        font-size: 30px;
+    }
+}
 

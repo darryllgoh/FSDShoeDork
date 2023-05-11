@@ -1,0 +1,15 @@
+/* Remove dafault border/outline */
+.email-sub input {
+    border: none;
+}
+
+.email-sub input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.email-sub button {
+    border: none;
+    font-family: 'Oswald';
+    font-weight: 500;
+}
