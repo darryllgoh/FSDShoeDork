@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box
+}
+
+/* Hero Carousel */
+.c-item {
+    height: 70vh;
+}
+
+.c-img {
+    height: 100%;
+    object-fit: cover;
+}
+/* End Of Hero Carousel */

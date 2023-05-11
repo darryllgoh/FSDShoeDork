@@ -1,0 +1,13 @@
+.featured-btn {
+    font-weight: bold;
+    border: none;
+}
+
+.featured-btn:hover {
+    background-color: #126180;
+}
+
+.lmt-edt {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+}

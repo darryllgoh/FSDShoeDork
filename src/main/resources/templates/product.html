@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Dork</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/CSS/product.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <!-- PROMO TEXT & NAVBAR -->
+    <div id="navbar"></div>
+    <!-- END OF PROMO TEXT & NAVBAR -->
+
+    <!-- PRODUCT INFORMATION-->
+    <div class="container py-5">
+      <div class="row">
+
+        <div class="col col-12 col-lg-6">
+          <div id="product-img" class="carousel slide carousel-dark">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#product-img" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#product-img" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner mb-2">
+              <div class="carousel-item active mb-3">
+                <img id="imgMain"src="" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img id="imgHover" src="" class="d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-12 col-lg-6">
+          <h2 class="mb-0" id="name">PRODUCT NAME</h2>
+          <p id="brandcategorycolor">Brand/Type/Color</p>
+          <p class="product-price">$100</p>
+          <div class="d-flex justify-content-between mb-3">
+            <h5>Select Size (US)</h5>
+            <button type="button" class="btn" data-toggle="modal" data-target="#sizeGuideModal">
+              <h5 class="size-guide-btn">Size Guide</h5>
+            </button>
+            <div class="modal fade" id="sizeGuideModal" tabindex="-1" role="dialog" aria-labelledby="sizeGuideModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg w-100" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title" id="sizeGuideModalLabel">Size Guide</h3>
+                    <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <!-- Add an image of the size guide -->
+                    <img src="https://d1j8g355sj09py.cloudfront.net/images/BMSIZEGUIDEV2_w535_h465.jpg" alt="Size Guide" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+
+          <div class="mb-4 product-size-btn d-flex justify-content- flex-wrap">
+            <!-- <button type="button" aria-label="Size: 7" class="Button hideSize" id="usSize7"> 7</button>
+            <button type="button" aria-label="Size: 8" class="Button hideSize" id="usSize8">8</button>
+            <button type="button" aria-label="Size: 9" class="Button" id="usSize9">9</button>
+            <button type="button" aria-label="Size: 10" class="Button" id="usSize10">10</button>
+            <button type="button" aria-label="Size: 11" class="Button hideSize" id="usSize11">11</button>
+            <button type="button" aria-label="Size: 12" class="Button hideSize" id="usSize12">12</button>
+            <button type="button" aria-label="Size: 13" class="Button hideSize" id="usSize13">13</button>
+            <button type="button" aria-label="Size: 14" class="Button hideSize" id="usSize14">14</button> -->
+          </div>
+
+          <div class="product-color">
+            <h5 class="mb-3">Color</h5>
+            <button type="button" class="Button mb-3"></button>
+          </div>
+          
+          <div class="col text-center add-to-bag-btn">
+            <button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5 w-100 mt-3 mb-5" id="addtoBag">ADD TO BAG</button>
+          </div>
+          <div>
+            <p id="addToBagError"></p>
+          </div>
+
+          <h3>MORE ABOUT ME</h3>
+          <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dolores dolore explicabo accusantium, dolor eos in cum ullam iste voluptatum dignissimos sapiente minus facilis mollitia cumque tenetur natus blanditiis voluptas!
+          <br><br>
+          Consequatur vel molestias eligendi harum est nobis praesentium sed quaerat, quidem quia in illo debitis facilis quasi. Dolores laborum totam, nulla ipsa veritatis inventore libero, facere, unde iste deleniti repudiandae.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+        
+    <!-- END OF PRODUCT INFORMATION-->
+   
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+    <!-- END OF FOOTER -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <script src="/js/product.js"></script>
+    <script src="/js/upload.js"></script>
+    
+    <!-- SIZE GUIDE POPUP-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- END OF SIZE GUIDE POPUP-->
+
+    <script>
+      $(document).ready(function() 
+      { 
+          $( "#footer" ).load( "common/footer.html" ); 
+          $( "#navbar" ).load( "common/navbar.html" );
+      });
+      </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box
+}
+
+/* Upload Page Placeholder Opacity */
+input.form-control::placeholder {
+    opacity: .5;
+}
+/* End Of Upload Page Placeholder Opacity */
+
+/* div { 
+    border: 1px black solid;
+}*/
+
+.sizeGuide {
+    border: 1px solid lightgray;
+    text-decoration: none;
+    color: black;
+    padding: 1%;
+    font-size: small;
+    border-radius: 10%;
+}
+
+/* .sizeGuide:hover {
+    color: white;
+    background-color: black;
+}
+
+#red {
+    background-color: red;
+    padding: 0 4%;
+}
+
+#blue {
+    background-color: blue;
+    padding: 0 4%;
+}
+
+#white {
+    background-color: white;
+    padding: 0 4%;
+}
+
+#grey {
+    background-color: grey;
+    padding: 0 4%;
+}
+
+#pink {
+    background-color: pink;
+    padding: 0 4%;
+}
+
+#black {
+    background-color: black;
+    padding: 0 4%;
+}
+
+#beige {
+    background-color: beige;
+    padding: 0 4%;
+} */
+
+.colorSelector {
+    font-weight: bold;
+}
+
+#submit-btn {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+#submit-btn:hover {
+    background-color: #126180 !important;
+}
+
+.formHeading {
+    font-size: 20px;
+}

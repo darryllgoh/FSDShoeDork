@@ -1,0 +1,33 @@
+label.placeholder-opacity {
+    opacity: .5;
+}
+
+#sign-in-btn {
+  font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+}
+
+#sign-in-btn:hover {
+    background-color: #126180;
+}
+
+#form-signin {
+    width: 40%;
+}
+
+@media screen and (max-width: 1440px) {
+    #form-signin {
+      width: 40%;
+  }
+
+@media screen and (max-width: 992px) {
+    #form-signin {
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    #form-signin {
+      width: 80%;
+    }
+  }
