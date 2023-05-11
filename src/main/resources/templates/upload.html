@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="/css/upload.css">
     <link rel="stylesheet" href="/css/fonts.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="js/upload.js"></script>
-    <script src="js/shop.js"></script>
+
     
 </head>
 <body>
@@ -28,17 +27,24 @@
     <div class="container text-center flex-column mt-5 mb-5">
       <h1>UPLOAD</h1>
     </div>
-  
+
+
+<!--    // Old Codes //
   <form id="productForm">
     <div class="container flex-column">
       <div class="row">
         <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-8">-->
+
+            <form class="productForm needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
   
 
             <div class="form-group mb-5 flex-column">
                 <label for="title" class="form-label formHeading">Item Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Air Force 1" required>
+                <input type="text" class="form-control" id="title" placeholder="Air Force 1" required>
                     <div class="invalid-feedback">
                       Please enter your product title.
                     </div>
@@ -63,6 +69,7 @@
                   <option value="Timberland">Timberland</option>
                   </select>
                   <div class="invalid-feedback">
+                      Please select a Brand.
                   </div>
             </div>
 
@@ -81,7 +88,7 @@
             </div>
 
             <div class="form-group mb-5 col-md-5 flex-column">
-                <label for="size" class="form-label formHeading">Size</label>
+                <label for="usSize" class="form-label formHeading">Size</label>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=7 id="usSize">
                   <label class="form-check-label" for="7">
@@ -192,6 +199,7 @@
                   <input type="radio" id="white" value="White" name="color">
                   <label for="white">White</label><br>
                   <div class="invalid-feedback">
+                      Please select a colour.
                 </div>
               </div>
 
@@ -254,7 +262,7 @@
     
     <!-- UPLOAD BUTTON -->
     <div class="container text-center flex-column mt-3 mb-5">
-      <button type="button" class="btn text-bg-dark rounded-pill w-50 py-3 px-5" id="submit-btn" onclick="getInput()">SUBMIT</button>
+      <button type="submit" class="btn text-bg-dark rounded-pill w-50 py-3 px-5" id="submit-btn" onclick="getInput()">SUBMIT</button>
     </div>
   </form>
     <!-- END OF UPLOAD BUTTON -->
@@ -269,7 +277,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
-
+    <script src="js/upload.js"></script>
+    <script src="js/shop.js"></script>
     
     <script>
       $(document).ready(function() 
