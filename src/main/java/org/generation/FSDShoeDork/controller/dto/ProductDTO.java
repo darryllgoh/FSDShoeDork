@@ -70,7 +70,7 @@ public class ProductDTO {
         return usSize;
     }
 
-    public void setUsSize( String category )
+    public void setUsSize( String usSize )
     {
         this.usSize = usSize;
     }
@@ -80,7 +80,7 @@ public class ProductDTO {
         return color;
     }
 
-    public void setColor( String category )
+    public void setColor( String color )
     {
         this.color = color;
     }
