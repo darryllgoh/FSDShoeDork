@@ -10,8 +10,3 @@ document.addEventListener("click", function(event) {
     searchInput.classList.remove("expand");
   }
 });
-
-var offcanvas = document.getElementById('offcanvasExample');
-  offcanvas.addEventListener('shown.bs.offcanvas', function () {
-    document.getElementById("search-input").focus();
-  })
