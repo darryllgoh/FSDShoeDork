@@ -45,12 +45,14 @@ public class ProductController {
         //To display images from local folder
         for (Product image: productService.all())
         {
+            // productImages/commonProjects-LugSoleLoafer1.jpg
             String setURL = imageFolder + "/" + image.getImgMain();
             image.setImgMain(setURL);
         }
 
         for (Product image: productService.all())
         {
+            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
             String setURL = imageFolder + "/" + image.getImgHover();
             image.setImgHover(setURL);
         }
