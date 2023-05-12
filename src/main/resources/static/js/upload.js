@@ -1,5 +1,65 @@
 let product = [];
 
+//Global variable - to store the image object
+let storeImage = "";
+
+//When user clicks on 'Save Item':
+//1) store all the inputs into variables
+//2) do validation
+//3) calls a function from the productController.js to access the API to add items to the database
+
+
+//Add an 'onsubmit' event listener for productform to add a product
+newItemForm.addEventListener('submit', (event) => {
+
+    //prevent default action of form submission
+    event.preventDefault();
+
+    const name = document.querySelector("#name").value;
+
+        const description = document.querySelector("#description").value;
+
+        const brand = document.querySelector("#brand").value;
+
+        const category = document.querySelector("#category").value;
+
+        //convert us size to array
+        const usSize = document.querySelectorAll("input[type='checkbox']:checked");
+        let usSizes = [];
+
+        for (let i = 0; i < usSize.length; i++) {
+            usSizes.push(usSize[i].value)
+        }
+
+        if (usSize.length === 0) {
+            // Array length is 0, show error message
+            alert("Error: Please check/fill-in in the US size checkboxes or the required fields before submitting the form.");
+            return ; // Prevents form submission
+          }
+
+        usSizes = usSizes.map(Number);
+        console.log(usSizes);
+
+        //end of US size conversion
+
+        const color = document.querySelector('input[name="color"]:checked').value;
+
+        const price = document.querySelector("#price").valueAsNumber;
+
+        const SKU = document.querySelector("#SKU").value;
+
+        const imgMain = document.querySelector("#imgMain").value;
+
+        const imgHover = document.querySelector("#imgHover").value;
+
+
+
+
+}
+
+
+
+
 //pull form inputs via API
 function getInput() {
 
@@ -82,38 +142,3 @@ function getInput() {
       }, false)
     })
   })()
-
-
-//3 local storage (set to Json) (review fetch API)
-//4 test
-// add on a code to display all the products from local storage 
-
-//call addProduct function on line 28 to 42 - e.g. name is name
-//review fetch api exercise
-
-/*
-
-test data
-
-ADIDAS SAMBA OG
-
-The Adidas Samba sneaker was first designed in 1949 to enable football players to train on icy ground, this history is expanded with the new Samba OG. A timeless icon that merges street and sporty style. Made with the same leather uppers as the original, the brand's iconic 3-Stripe branding still takes place with a matching contrasting heel to match.
-
-Adidas
-
-Sneakers
-
-Size
-
-White
-
-219
-
-ADIDAS SAMBA OG
-
-https://media.endclothing.com/media/f_auto,q_auto:eco,w_768/prodmedia/media/catalog/product/2/9/29-12-2022_AW_B75806_m1_1.jpg
-
-
-https://media.endclothing.com/media/f_auto,q_auto:eco,w_768/prodmedia/media/catalog/product/2/9/29-12-2022_AW_B75806_2_1.jpg
-
-*/
