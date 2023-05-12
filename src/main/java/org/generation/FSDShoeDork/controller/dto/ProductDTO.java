@@ -120,7 +120,7 @@ public class ProductDTO {
         return imgHover;
     }
 
-    public void setImgHover( String style )
+    public void setImgHover( String imgHover )
     {
         this.imgHover = imgHover;
     }

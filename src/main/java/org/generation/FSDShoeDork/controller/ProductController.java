@@ -55,6 +55,7 @@ public class ProductController {
             // productImages/Image/commonProjects-LugSoleLoafer2.jpg
             String setURL = imageFolder + "/" + image.getImgHover();
             image.setImgHover(setURL);
+            System.out.println(image.getImgHover());
         }
 
         /* To display images from the Server Container */
