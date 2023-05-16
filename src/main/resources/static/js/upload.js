@@ -1,119 +1,99 @@
-let product = [];
+let productList = [];
 
-//pull form inputs via API
-function getInput() {
+//Global variable - to store the image object
+let storeImageMain = "";
+let storeImageHover = "";
 
-    preventDefault();
-
-    const name = document.querySelector("#name").value;
-
-    const description = document.querySelector("#description").value;
-
-    const brand = document.querySelector("#brand").value;
-
-    const category = document.querySelector("#category").value;
-
-    //convert us size to array
-    const usSize = document.querySelectorAll("input[type='checkbox']:checked");
-    let usSizes = [];
-
-    for (let i = 0; i < usSize.length; i++) {
-        usSizes.push(usSize[i].value)
-    }
-
-    if (usSize.length === 0) {
-        // Array length is 0, show error message
-        alert("Error: Please check/fill-in in the US size checkboxes or the required fields before submitting the form.");
-        return ; // Prevents form submission
-      }
-
-    usSizes = usSizes.map(Number);
-    console.log(usSizes);
-
-    //end of US size conversion
-
-    const color = document.querySelector('input[name="color"]:checked').value;
-
-    const price = document.querySelector("#price").valueAsNumber;
-
-    const SKU = document.querySelector("#SKU").value;
-
-    const imgMain = document.querySelector("#imgMain").value;
-
-    const imgHover = document.querySelector("#imgHover").value;
-
-    // update product list by combining hard coded product data with form data
-    addProduct(name, description, brand, category, usSizes, color, price, SKU, imgMain, imgHover);
-
-    //replaced product.push below
-
-    console.log(productList);
-
-    //pull updated product list to local storage in json
-    localStorage.setItem("productList", JSON.stringify(productList));
-    //- remove above
-
-    document.getElementById("productForm").reset();
-
-    alert("Thank you for submitting a product listing!");
-
-    const forms = document.querySelectorAll('.needs-validation')
+//When user clicks on 'Save Item':
+//1) store all the inputs into variables
+//2) do validation
+//3) calls a function from the productController.js to access the API to add items to the database
 
 
-} // end of function getFormUploadInput
+//Add an 'onsubmit' event listener for productform to add a product
+productForm.addEventListener('submit', (event) => {
 
-//Example starter JavaScript for disabling form submissions if there are invalid fields
+    //prevent default action of form submission
+    event.preventDefault();
 
-(() => {
-    'use strict'
+        const name = document.querySelector("#name").value;
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
+        const description = document.querySelector("#description").value;
 
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-      form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+        const brand = document.querySelector("#brand").value;
+
+        const category = document.querySelector("#category").value;
+
+        //convert us size to array
+        const usSize = document.querySelectorAll("input[type='checkbox']:checked");
+        let usSizes = [];
+
+        for (let i = 0; i < usSize.length; i++) {
+            usSizes.push(usSize[i].value)
         }
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-  })()
+        if (usSize.length === 0) {
+            // Array length is 0, show error message
+            alert("Error: Please check/fill-in in the US size checkboxes or the required fields before submitting the form.");
+            return ; // Prevents form submission
+          }
+
+        usSizes = usSizes.map(String);
+        usSizes.toString();
+        console.log(usSizes);
+
+        //end of US size conversion
+
+        const color = document.querySelector('input[name="color"]:checked').value;
+
+        const price = document.querySelector("#price").valueAsNumber;
+
+        const SKU = document.querySelector("#SKU").value;
+
+        const imgMain = document.querySelector('#imgMain').value.replace("C:\\fakepath\\", "");
+
+        const imgHover = document.querySelector('#imgHover').value.replace("C:\\fakepath\\", "");
+
+        // 3)  calls a function from the productController.js to access the API to add items to the database
+        addProduct(name, description, brand, category, usSizes, color, price, SKU, imgMain, imgHover, storeImageMain, storeImageHover);
+
+        //Example starter JavaScript for disabling form submissions if there are invalid fields
+
+        const forms = document.querySelectorAll('.needs-validation')
 
 
-//3 local storage (set to Json) (review fetch API)
-//4 test
-// add on a code to display all the products from local storage 
+//        (() => {
+//            'use strict'
+//
+//            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//            const forms = document.querySelectorAll('.needs-validation')
+//
+//            // Loop over them and prevent submission
+//            Array.from(forms).forEach(form => {
+//              form.addEventListener('submit', event => {
+//                if (!form.checkValidity()) {
+//                  event.preventDefault()
+//                  event.stopPropagation()
+//                };
+//
+//                form.classList.add('was-validated')
+//              }, false);
+//            })
+//          })
 
-//call addProduct function on line 28 to 42 - e.g. name is name
-//review fetch api exercise
+});
 
-/*
+        // select file input
+        const inputMain = document.querySelector('#imgMain');
+        // add event listener
+        inputMain.addEventListener('change', () => {
+          storeImageMain = inputMain.files[0]; //array of files for us to access
+        })
 
-test data
-
-ADIDAS SAMBA OG
-
-The Adidas Samba sneaker was first designed in 1949 to enable football players to train on icy ground, this history is expanded with the new Samba OG. A timeless icon that merges street and sporty style. Made with the same leather uppers as the original, the brand's iconic 3-Stripe branding still takes place with a matching contrasting heel to match.
-
-Adidas
-
-Sneakers
-
-Size
-
-White
-
-219
-
-ADIDAS SAMBA OG
-
-https://media.endclothing.com/media/f_auto,q_auto:eco,w_768/prodmedia/media/catalog/product/2/9/29-12-2022_AW_B75806_m1_1.jpg
+        const inputHover = document.querySelector('#imgHover');
+        // add event listener
+        inputHover.addEventListener('change', () => {
+          storeImageHover = inputHover.files[0]; //array of files for us to access
+        })
 
 
-https://media.endclothing.com/media/f_auto,q_auto:eco,w_768/prodmedia/media/catalog/product/2/9/29-12-2022_AW_B75806_2_1.jpg
-
-*/

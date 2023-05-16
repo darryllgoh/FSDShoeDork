@@ -106,14 +106,19 @@ public class ProductController {
                        @RequestParam(name="SKU", required = true) String SKU,
                        @RequestParam(name="imgMain", required = true) String imgMain,
                        @RequestParam(name="imgHover", required = true) String imgHover,
-                       @RequestParam("imagefile") MultipartFile multipartFile) throws IOException
+                       @RequestParam("imageMainfile") MultipartFile multipartFileMain,
+                       @RequestParam("imageHoverfile") MultipartFile multipartFileHover) throws IOException
 
     {
         //t-shirt_new.jpg
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(multipartFileMain.getOriginalFilename());
+        String fileName2 = StringUtils.cleanPath(multipartFileHover.getOriginalFilename());
+
 
         //productimages, t-shirt_new.jpg, object
-        FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
+        FileUploadUtil.saveFile(imageFolder, fileName, multipartFileMain);
+        FileUploadUtil.saveFile(imageFolder, fileName2, multipartFileHover);
+
 
         //String fullPath = imageFolder + "/" + imageUrl;
 
