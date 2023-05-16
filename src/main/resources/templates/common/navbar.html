@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
   <meta charset="UTF-8">
@@ -48,9 +48,18 @@
             </svg>
           </button>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-            <li class="py-1">
-              <a class="dropdown-item" th:href="@{login}">Log In</a>
-            </li>
+            <div sec:authorize="isAnonymous()">
+              <li class="py-1">
+                <a class="dropdown-item" th:href="@{login}">Log In</a>
+              </li>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+              <form id="logOut" th:action="@{/logout}" method="post">
+                <li class="py-1">
+                  <a class="dropdown-item" onclick="document.getElementById('logOut').submit();">Log Out</a>
+                </li>
+              </form>
+            </div>
             <li class="py-1">
               <a class="dropdown-item" aria-current="page" th:href="@{upload}">Upload Product</a>
             </li>
@@ -87,9 +96,18 @@
             </svg>
           </button>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-            <li class="py-1">
-              <a class="dropdown-item" th:href="@{login}">Log In</a>
-            </li>
+            <div sec:authorize="isAnonymous()">
+              <li class="py-1">
+                <a class="dropdown-item" th:href="@{login}">Log In</a>
+              </li>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+              <form id="logOut" th:action="@{/logout}" method="post">
+                <li class="py-1">
+                  <a class="dropdown-item" onclick="document.getElementById('logOut').submit();">Log Out</a>
+                </li>
+              </form>
+            </div>
             <li class="py-1">
               <a class="dropdown-item" aria-current="page" th:href="@{upload}">Upload Product</a>
             </li>
