@@ -25,6 +25,7 @@ public class User {
 
     private String email;
     private String password;
+    private String role;
 
     public User() {}
     //Item class used to map with DB table
@@ -42,7 +43,7 @@ public class User {
         // database table columns and to be able to save the data in the columns
         this.email = userDTO.getEmail();
         this.password = userDTO.getPassword();
-
+        this.role = userDTO.getRole();
     }
 
     public Integer getId()
@@ -73,6 +74,14 @@ public class User {
     public void setPassword( String password )
     {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

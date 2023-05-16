@@ -56,60 +56,55 @@ sizeButtons.forEach(button => {
 });
 
 
-function addToBag(inputObject) {
-  const addToBagProduct = {
-    name: inputObject.name,
-    description: inputObject.description,
-    brand: inputObject.brand,
-    category: inputObject.category,
-    usSize: usSizeSelected,
-    color: inputObject.color,
-    price: inputObject.price,
-    SKU: inputObject.SKU,
-    imgMain: inputObject.imgMain,
-    imgHover: inputObject.imgHover
-  }
-  return addToBagProduct;
-}
+//function addToBag(inputObject) {
+//  const addToBagProduct = {
+//    name: inputObject.name,
+//    description: inputObject.description,
+//    brand: inputObject.brand,
+//    category: inputObject.category,
+//    usSize: usSizeSelected,
+//    color: inputObject.color,
+//    price: inputObject.price,
+//    SKU: inputObject.SKU,
+//    imgMain: inputObject.imgMain,
+//    imgHover: inputObject.imgHover
+//  }
+//  return addToBagProduct;
+//}
 
 const addToBagButton = document.querySelector('#addtoBag');
 
 //Added an event listener to ADD TO BAG button to validate that size button is selected prior to creating addToBagProduct object (for ProductDTO)
 addToBagButton.addEventListener('click', () => {
-  
-  if (usSizeSelected == "") {
+
+  if (usSizeSelected === "") {
     let errorMsg = "Please select a size before adding to bag";
-    document.querySelector('#addToBagError').innerHTML = errorMsg;; 
+    document.querySelector('#addToBagError').innerHTML = errorMsg;
+    return;
   }
-  const addToBagProduct = addToBag(convertProduct);
   document.querySelector('#addToBagError').innerHTML = "";
 
-  addToBagProduct.usSize = parseInt(usSizeSelected);
-  console.log("addToBagProduct object:");
-  console.log(addToBagProduct);
-  return addToBagProduct;
+  console.log(typeof usSizeSelected);
+  console.log(usSizeSelected);
+  console.log("addToBag Object:");
+  console.log(convertProduct);
 
-  /* //POST API to be added later
+  //POST API to be added later
   const formData = new FormData();
-  formData.append('name', addToBagProduct.name);
-  formData.append('description', addToBagProduct.description);
-  formData.append('brand', addToBagProduct.brand);
-  formData.append('category', addToBagProduct.category);
-  formData.append('usSize', addToBagProduct.usSize);
-  formData.append('color', addToBagProduct.color);
-  formData.append('price', addToBagProduct.price);
-  formData.append('SKU', addToBagProduct.SKU);
-  formData.append('imgMain', addToBagProduct.imgMain);
-  formData.append('imgHover', addToBagProduct.imgHover);
+  formData.append('product_id', convertProduct.name);
+  formData.append('user_id', 1);
+  formData.append('sizeSelected', usSizeSelected);
+  formData.append('qty', 1);
 
-  fetch(addAPI, {
+
+  fetch(addCartAPI, {
       method: 'POST',
       body: formData
       })
       .then(function(response) {
           console.log(response.status); // Will show you the status eg. 200 ok, 500, 404
           if (response.ok) {
-              alert("Successfully Added Product!");
+              alert("Successfully Added Product To Cart!");
           }
           else {
              alert("Something went wrong. Please try again");
@@ -117,8 +112,7 @@ addToBagButton.addEventListener('click', () => {
       })
       .catch((error) => {
           console.error('Error:', error);
-          alert("Error adding item to Product");
+          alert("Error adding product to Cart");
       });
-  */
 
 });
