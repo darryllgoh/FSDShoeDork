@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.generation.FSDShoeDork.repository.entity.User;
 import org.generation.FSDShoeDork.controller.dto.UserDTO;
 
+import java.io.IOException;
+
 //request mapping is to provide a url route for frontend to cal the API endpoints
 @RestController
 @RequestMapping("/user")
@@ -61,10 +63,16 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/add")
     public void save(  @RequestParam(name="email", required = true) String email,
-                       @RequestParam(name="password", required = true) String password)
+                       @RequestParam(name="password", required = true) String password,
+                       @RequestParam(name="role", required = false) String role) throws IOException
     {
-        UserDTO userDTO = new UserDTO(email, password);
-        userService.save(new User(userDTO));
+        if (role == null) {
+            UserDTO userDTO = new UserDTO(email, password);
+            userService.save(new User(userDTO));
+        } else {
+            UserDTO userDTO = new UserDTO(email, password, role);
+            userService.save(new User(userDTO));
+        }
     }
 
 

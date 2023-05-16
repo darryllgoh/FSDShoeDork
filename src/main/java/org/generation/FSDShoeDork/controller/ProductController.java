@@ -46,17 +46,13 @@ public class ProductController {
         for (Product image: productService.all())
         {
             // productImages/commonProjects-LugSoleLoafer1.jpg
-            String setURL = imageFolder + "/" + image.getImgMain();
-            image.setImgMain(setURL);
+            String setURLMain = imageFolder + "/" + image.getImgMain();
+            image.setImgMain(setURLMain);
+            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
+            String setURLHover = imageFolder + "/" + image.getImgHover();
+            image.setImgHover(setURLHover);
         }
 
-        for (Product image: productService.all())
-        {
-            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
-            String setURL = imageFolder + "/" + image.getImgHover();
-            image.setImgHover(setURL);
-            System.out.println(image.getImgHover());
-        }
 
         /* To display images from the Server Container */
 //        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=productimagedarryllgoh;AccountKey=NbtYS7PnjSzjZzyh3MqxA+yhJG54DEC76458ym0lxao/cH0Ib/C1fQreSdmRPR99uaYV0t0lqiwZ+AStxyIybA==;EndpointSuffix=core.windows.net";
