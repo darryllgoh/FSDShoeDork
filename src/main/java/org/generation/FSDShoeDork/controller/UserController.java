@@ -62,17 +62,14 @@ public class UserController {
 
     @CrossOrigin
     @PostMapping("/add")
-    public void save(  @RequestParam(name="email", required = true) String email,
+    public void save(  @RequestParam(name="username", required = true) String username,
                        @RequestParam(name="password", required = true) String password,
-                       @RequestParam(name="role", required = false) String role) throws IOException
+                       @RequestParam(name="role", required = true) String role,
+                       @RequestParam(name="enabled", required = true) Integer enabled)
     {
-        if (role == null) {
-            UserDTO userDTO = new UserDTO(email, password);
-            userService.save(new User(userDTO));
-        } else {
-            UserDTO userDTO = new UserDTO(email, password, role);
-            userService.save(new User(userDTO));
-        }
+        UserDTO userDTO = new UserDTO(username, password, role, enabled);
+        userService.save(new User(userDTO));
+
     }
 
 

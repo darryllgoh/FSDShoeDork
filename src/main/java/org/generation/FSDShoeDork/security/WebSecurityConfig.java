@@ -48,7 +48,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((requests) -> {
             ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)
                     requests.requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
-                    "/productImages/**", "/login", "/aboutus", "/cart", "/shop", "/common/**")).permitAll().requestMatchers(new String[]{"/upload/**"})).hasRole("ADMIN");
+                    "/productImages/**", "/login", "/aboutus", "/user/**", "/cart", "/shop", "/common/**")).permitAll().requestMatchers(new String[]{"/upload/**"})).hasRole("ADMIN");
         });
         return (SecurityFilterChain)http.build();
     }
