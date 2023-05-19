@@ -1,3 +1,6 @@
+  .review-header h1 {
+    font-size: 72px;
+  }
 
   .wrapper{
     display: flex;
@@ -82,5 +85,8 @@
   @media screen and (max-width: 576px) {
     .carousel-reviews img{
       width: 100%;
+    }
+    .review-header h1 {
+      font-size: 36px;
     }
   }

@@ -7,10 +7,6 @@ label.placeholder-opacity {
       font-weight: 500;
 }
 
-#sign-in-btn:hover {
-    background-color: #126180;
-}
-
 #form-signin {
     width: 40%;
 }

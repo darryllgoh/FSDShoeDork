@@ -157,10 +157,6 @@ input[type="checkbox"]:not(:checked) {
     font-weight: bold;
     border: none;
 }
-
-.load-more-btn button:hover {
-    background-color: #126180;
-}
   
 #productList a {
     text-decoration: none;
