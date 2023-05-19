@@ -71,10 +71,6 @@ input.form-control::placeholder {
     font-size: 20px;
 }
 
-#submit-btn:hover {
-    background-color: #126180 !important;
-}
-
 .formHeading {
     font-size: 20px;
 }
