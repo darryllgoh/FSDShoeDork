@@ -9,15 +9,12 @@ function filterProduct() {
 
     // Assign variable for an array of category checkboxes that are checked
     const categoryFilters = Array.from(document.querySelectorAll('input[name="category"]:checked'));
-    console.log(categoryFilters.length);
 
     // Assign variable for an array of color checkboxes that are checked
     const colorFilters = Array.from(document.querySelectorAll('input[name="color"]:checked'));
-    console.log(colorFilters.length);
 
     // Assign variable for an array of brand checkboxes that are checked
     const brandFilters = Array.from(document.querySelectorAll('input[name="brand"]:checked'));
-    console.log(brandFilters.length);
 
     const filteredProducts = [];
 
@@ -63,8 +60,8 @@ function resetFilter() {
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
     }
-
-    renderProductPage(productController);
+    productController = [];
+    displayProducts(displayAllAPI);
     document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
 }
 

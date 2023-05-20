@@ -1,16 +1,24 @@
+// To get category link clicked on index page from localStorage (if any)
+let getClickedLink = null;
+getClickedLink = localStorage.getItem("categoryClicked");
+
+
 //Initialize productController
 let productController = [];
 
 //development APIs
 const addAPI= 'http://localhost:8080/product/add';
-const displayAPI = 'http://localhost:8080/product/all';
+const displayAllAPI = 'http://localhost:8080/product/all';
 const addCartAPI = 'http://localhost:8080/cart/add';
-let getProductAPI = `http://localhost:8080/product/{id}`
+let getCategoryAPI = 'http://localhost:8080/product/cat/' + getClickedLink;
+let getProductAPI = `http://localhost:8080/product/{id}`;
 
 //production APIs
 //const addAPI = 'https://TBC.azurewebsites.net/product/add';
-//const displayAPI = 'https://TBC.azurewebsites.net/product/all';
+//const displayAllAPI = 'https://TBC.azurewebsites.net/product/all';
 //const addToCartAPI = 'https://TBC.azurewebsites.net/cart/add';
+// let getCategoryAPI = 'http://TBC.azurewebsites.net/product/cat/' + getClickedLink;
+//let getProductAPI = `http://TBC.azurewebsites.net/product/{id}`;
 
 
 function addProduct(name, description, brand, category, usSize, color, price, SKU, imgMain, imgHover) {
@@ -30,8 +38,8 @@ function addProduct(name, description, brand, category, usSize, color, price, SK
 
 
 //GET API to get all products in product database table and display on website
-const displayProducts = () => {
-    fetch(displayAPI)
+const displayProducts = (API) => {
+    fetch(API)
         .then(response => response.json())
         .then(data => {
 
@@ -57,6 +65,7 @@ const displayProducts = () => {
                 productController.push(productObject);
             })
         renderProductPage(productController);
+        localStorage.removeItem("categoryClicked");
         })
         .catch(error => {
             console.log(error);
@@ -89,15 +98,6 @@ const renderProductPage = (array) => {
     }
     document.querySelector("#productList").innerHTML = details;
 }
-
-// Display all products by default (on webpage load)
-//renderProductPage(productController); comment off
-
-// Display product through local storage
-
-//const getProduct = localStorage.getItem("productController");
-//const storedData = JSON.parse(getProduct);
-//renderProductPage(storedData);
 
 // Prepare data to display individual product in product.html
 const displayProductDetails = (index) => {

@@ -43,8 +43,9 @@
 //
 //    @Override
 //    public ArrayList<CartEntry> findAllByUserId(Integer userId) {
-//        ArrayList<CartEntry> result = shoppingCartRepository.findAllByUserId(userId);
-//        return result;
+//
+//        //ArrayList<CartEntry> result = shoppingCartRepository.findAllByUserId(userId);
+//        //return result;
 //    }
 //    //ArrayList<CartEntry> findAllByUserId(userId);
 //

@@ -64,6 +64,13 @@ public class ProductServiceMySQL implements ProductService {
         return productResponse;
     }
 
+    @Override
+    public ArrayList<Product> getProductByCategory(String category) {
+        ArrayList<Product> result = new ArrayList<>();
+        result.addAll(productRepository.getProductByCategory(category));
+        return result;
+    }
+
 
 
 }

@@ -15,6 +15,7 @@ import org.generation.FSDShoeDork.controller.dto.ProductDTO;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 //request mapping is to provide a url route for frontend to cal the API endpoints
@@ -126,6 +127,42 @@ public class ProductController {
                 , imgHover);
         productService.save(new Product(productDTO));
     }
+
+    @CrossOrigin
+    @GetMapping("/cat/{category}")
+    public Iterable<Product> getProductByCategory(@PathVariable String category) {
+        //To display images from local folder
+        System.out.println(category);
+        for (Product image: productService.getProductByCategory(category))
+        {
+            // productImages/commonProjects-LugSoleLoafer1.jpg
+            String setURLMain = imageFolder + "/" + image.getImgMain();
+            image.setImgMain(setURLMain);
+            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
+            String setURLHover = imageFolder + "/" + image.getImgHover();
+            image.setImgHover(setURLHover);
+        }
+
+        /* To display images from the Server Container */
+//        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=productimagedarryllgoh;AccountKey=NbtYS7PnjSzjZzyh3MqxA+yhJG54DEC76458ym0lxao/cH0Ib/C1fQreSdmRPR99uaYV0t0lqiwZ+AStxyIybA==;EndpointSuffix=core.windows.net";
+//        //System.out.println("Connect String: " + connectStr2);
+//        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
+//        String containerName = "prodimage";
+//        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+//        BlobClient blobClient = containerClient.getBlobClient(itemService.all().get(0).getImageUrl());
+//
+//
+//        //Loop through the ArrayList of itemService.all() and append the Blob url to the imageUrl
+//        for (Item image: itemService.all())
+//        {
+//            //path: productimagespring/prodimage/t-shirt.jpg
+//            String setURL = blobClient.getAccountUrl() + "/" + containerName + "/" + image.getImageUrl();
+//            image.setImageUrl(setURL);
+//        }
+
+        //return in controller represents a response to the client
+        return this.productService.getProductByCategory(category);
+    };
 
 
 }

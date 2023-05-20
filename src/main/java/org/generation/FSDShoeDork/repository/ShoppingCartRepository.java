@@ -8,7 +8,7 @@
 //
 //public interface ShoppingCartRepository extends CrudRepository<CartEntry, Integer> {
 //
-//    @Query(value = "SELECT * FROM shoppingcart WHERE user_id = 1",
+//    @Query(value = "SELECT * FROM shoppingcart WHERE user_id = :userId",
 //            nativeQuery = true)
 //    ArrayList<CartEntry> findAllByUserId(Integer userId);
 //}
