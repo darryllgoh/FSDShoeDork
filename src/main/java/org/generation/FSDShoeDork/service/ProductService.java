@@ -19,4 +19,7 @@ public interface ProductService {
 
     //Read an item from database - based on item Id
     Product findById(int productId);
+
+    //Read items from the database - filtered by category
+    ArrayList<Product> getProductByCategory(String category);
 }

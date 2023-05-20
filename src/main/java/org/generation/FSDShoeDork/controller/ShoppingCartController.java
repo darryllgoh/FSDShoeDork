@@ -43,18 +43,19 @@
 //
 //    }
 //
-////    @CrossOrigin
-////    @GetMapping("my")
-////    public Iterable<CartEntry> findAllByUserId(Integer userId) {
+//    @CrossOrigin
+//    @GetMapping("my")
+//    public Iterable<CartEntry> findAllByUserId() {
 ////        for (CartEntry cartEntry: shoppingCartService.findAllByUserId(userId))
 ////        {
 ////            Product product = productController.findProductById(cartEntry.getProduct().getId());
 ////            cartEntry.getProduct().setImgMain(imageFolder + "/" + product.getImgMain());
 ////            cartEntry.getProduct().setImgHover(imageFolder + "/" + product.getImgHover());
 ////        }
-////
-////        return this.shoppingCartService.findAllByUserId(userId);
-////    }
+//
+//        return this.shoppingCartService.findAllByUserId();
+//    }
+//
 //
 ////    @CrossOrigin
 ////    @GetMapping("/cart")
