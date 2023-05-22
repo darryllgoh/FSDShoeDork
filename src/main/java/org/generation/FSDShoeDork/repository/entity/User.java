@@ -44,8 +44,8 @@ public class User {
         // database table columns and to be able to save the data in the columns
         this.username = userDTO.getUsername();
         this.password = userDTO.getPassword();
-        this.role = "ROLE_ADMIN";
-        this.enabled = 1;
+        this.role = userDTO.getRole();
+        this.enabled =  userDTO.getEnabled();
     }
 
     public Integer getId()
@@ -97,7 +97,7 @@ public class User {
     @Override
     public String toString()
     {
-        return "Item{" + "id=" + id + ", username='" + username + '\'' + ", password='" +
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", password='" +
                 password + '\'' + ", role='" +
                 role + '\'' + ", enabled='" +
                 enabled + '}';

@@ -9,15 +9,15 @@ public class UserDTO {
     private String role;
     private Integer enabled;
 
-    public UserDTO(String username, String password, String role, Integer enabled) {
+    public UserDTO(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
-        this.enabled = enabled;
+        this.role = "ROLE_USER"; // "role user"
+        this.enabled = 1; // "integer"
     }
 
-    //Average user sign u
-
+    //user sign up
+    //https://www.baeldung.com/spring-security-registration-password-encoding-bcrypt
 
     public String getUsername() {
         return username;
@@ -52,6 +52,15 @@ public class UserDTO {
 
     public void setEnabled(Integer enabled) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "UserDTO {" + "username='" + username + '\'' + ", password='" +
+                password + '\'' + ", role='" +
+                role + '\'' + ", enabled='" +
+                enabled + '}';
     }
 
 }

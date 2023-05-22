@@ -7,6 +7,9 @@ package org.generation.FSDShoeDork.controller;
 
 import org.generation.FSDShoeDork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.generation.FSDShoeDork.repository.entity.User;
 import org.generation.FSDShoeDork.controller.dto.UserDTO;
@@ -63,14 +66,11 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/add")
     public void save(  @RequestParam(name="username", required = true) String username,
-                       @RequestParam(name="password", required = true) String password,
-                       @RequestParam(name="role", required = true) String role,
-                       @RequestParam(name="enabled", required = true) Integer enabled)
+                       @RequestParam(name="password", required = true) String password)
     {
-        UserDTO userDTO = new UserDTO(username, password, role, enabled);
+        UserDTO userDTO = new UserDTO(username, new BCryptPasswordEncoder().encode(password));
+        System.out.println(userDTO);
         userService.save(new User(userDTO));
 
     }
-
-
 }
