@@ -4,31 +4,28 @@ package org.generation.FSDShoeDork.controller.dto;
 //ID is autoincrement
 public class UserDTO {
 
-    private String email;
+    private String username;
     private String password;
     private String role;
+    private Integer enabled;
 
-    public UserDTO(String email, String password, String role) {
-        this.email = email;
+    public UserDTO(String username, String password) {
+        this.username = username;
         this.password = password;
-        this.role = role;
+        this.role = "ROLE_USER"; // "role user"
+        this.enabled = 1; // "integer"
     }
 
-    //Average user sign up
-    public UserDTO(String email, String password) {
-        this.email = email;
-        this.password = password;
-        this.role = "ROLE_USER";
-    }
+    //user sign up
+    //https://www.baeldung.com/spring-security-registration-password-encoding-bcrypt
 
-
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 
@@ -48,4 +45,22 @@ public class UserDTO {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Integer getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "UserDTO {" + "username='" + username + '\'' + ", password='" +
+                password + '\'' + ", role='" +
+                role + '\'' + ", enabled='" +
+                enabled + '}';
+    }
+
 }

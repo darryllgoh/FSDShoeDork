@@ -9,8 +9,11 @@ import org.springframework.security.config.annotation.authentication.configurers
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.Collection;
 
 
 @Configuration
@@ -41,16 +44,33 @@ public class WebSecurityConfig {
 
         http.formLogin().loginPage("/login");
 
-        http.formLogin().defaultSuccessUrl("/upload", true);
+        http.formLogin().defaultSuccessUrl("/", true);
+
+        http.formLogin().successHandler((request, response, authentication) -> {
+            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+            boolean isAdmin = authorities.stream()
+                    .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
+
+            if (isAdmin) {
+                response.sendRedirect("/upload");
+            } else {
+                response.sendRedirect("/index");
+            }
+        });
 
         http.logout().logoutSuccessUrl("/index");
 
         http.authorizeHttpRequests((requests) -> {
-            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)
-                    requests.requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
-                    "/productImages/**", "/login", "/aboutus", "/cart", "/shop", "/common/**")).permitAll().requestMatchers(new String[]{"/upload/**"})).hasRole("ADMIN");
+                    requests
+                            .requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
+                    "/productImages/**", "/login", "/aboutus", "/register" ,"/user/**", "/shop",
+                            "/common/**").permitAll()
+                    .requestMatchers(new String[]{"/upload/**"}).hasRole("ADMIN")
+                    .requestMatchers(new String[]{"/cart/**"}).hasRole("USER");
         });
-        return (SecurityFilterChain)http.build();
+        return http.build();
     }
+
 }
 

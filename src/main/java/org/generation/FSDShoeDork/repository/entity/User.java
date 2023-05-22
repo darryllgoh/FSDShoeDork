@@ -23,9 +23,10 @@ public class User {
     //retrieve product item by ID - has to be an object - primary key
     //all keys should map the same name to the db columns
 
-    private String email;
+    private String username;
     private String password;
     private String role;
+    private Integer enabled;
 
     public User() {}
     //Item class used to map with DB table
@@ -41,9 +42,10 @@ public class User {
     {
         //Transfer the object (with the data) to Entity Class for mapping with the
         // database table columns and to be able to save the data in the columns
-        this.email = userDTO.getEmail();
+        this.username = userDTO.getUsername();
         this.password = userDTO.getPassword();
         this.role = userDTO.getRole();
+        this.enabled =  userDTO.getEnabled();
     }
 
     public Integer getId()
@@ -56,14 +58,14 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail()
+    public String getUsername()
     {
-        return email;
+        return username;
     }
 
-    public void setEmail( String email )
+    public void setUsername( String username )
     {
-        this.email = email;
+        this.username = username;
     }
 
     public String getPassword()
@@ -84,11 +86,21 @@ public class User {
         this.role = role;
     }
 
+    public Integer getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString()
     {
-        return "Item{" + "id=" + id + ", email='" + email + '\'' + ", password='" +
-                password + '}';
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", password='" +
+                password + '\'' + ", role='" +
+                role + '\'' + ", enabled='" +
+                enabled + '}';
     }
 
 }
