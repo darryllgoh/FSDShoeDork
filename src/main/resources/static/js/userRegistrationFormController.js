@@ -1,7 +1,9 @@
 //development APIs
 const addAPI= 'http://localhost:8080/user/add';
+const displayAPI = 'http://localhost:8080/product/all';
 
-function addUser(username, password, brand)
+
+function addUser(username, password)
 {
    const formData = new FormData();
    formData.append('username', username);

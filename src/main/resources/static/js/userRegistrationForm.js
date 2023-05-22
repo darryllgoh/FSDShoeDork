@@ -53,4 +53,13 @@ registerForm.addEventListener('submit', (event) => {
     }, false);
 })
 
+function validateForm() {
+    let x = document.forms["registerForm"]["username"].value;
+    let y = document.forms["registerForm"]["password"].value;
+    if (x == "" || y == "") {
+        alert("Please complete all fields");
+        return false;
+    }
+}
+
 

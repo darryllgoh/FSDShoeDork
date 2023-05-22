@@ -69,8 +69,6 @@ public class UserController {
                        @RequestParam(name="password", required = true) String password)
     {
         UserDTO userDTO = new UserDTO(username, new BCryptPasswordEncoder().encode(password));
-        System.out.println(userDTO);
         userService.save(new User(userDTO));
-
     }
 }
