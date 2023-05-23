@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Dork</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/upload.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/promotext.css">
+    <script src="/js/navbar.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+</head>
+<body>
+    <!-- PROMO TEXT -->
+    <div th:insert="~{common/promotext :: promotext}" id="promotext"></div>
+    <!-- END OF PROMO TEXT -->
+
+    <!-- NAVBAR -->
+    <div th:insert="~{common/navbar :: navbar}" id="navbar"></div>
+    <!-- END OF PROMO TEXT & NAVBAR -->
+
+    <!-- UPLOAD FORM -->
+    <div class="container text-center flex-column mt-5 mb-5">
+      <h1>Create Account</h1>
+    </div>
+
+
+    <form id="registerForm" class="needs-validation" enctype="multipart/form-data" onsubmit="validateForm()">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+
+
+            <div class="form-group mb-5 flex-column">
+                <label for="username" class="form-label formHeading">Email Address</label>
+                <input type="email" class="form-control" id="username" placeholder="Email Address" required>
+                    <div class="invalid-feedback">
+                      Please enter your email.
+                    </div>
+            </div>
+
+            <div class="form-group mb-5 flex-column">
+                    <label for="password" class="form-label formHeading">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+            </div>
+
+        <div class="col-2"></div>
+      </div>
+
+
+    </div>
+    <!-- END OF UPLOAD FORM -->
+
+    <!-- UPLOAD BUTTON -->
+    <div class="container text-center flex-column mt-3 mb-5">
+      <button type="submit" class="btn text-bg-dark rounded-pill w-50 py-3 px-5" id="submit-btn">Create an
+          account</button>
+    </div>
+    </form>
+    <!-- END OF UPLOAD BUTTON -->
+
+   
+   
+    <!-- FOOTER -->
+    <div th:insert="~{common/footer :: footer}" id="footer"></div>
+    <!-- END OF FOOTER -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <script src="js/userRegistrationForm.js"></script>
+    <script src="js/userRegistrationFormController.js"></script>
+    
+
+</body>
+</html>

@@ -9,9 +9,16 @@ let storeImageHover = "";
 //2) do validation
 //3) calls a function from the productController.js to access the API to add items to the database
 
+const forms = document.querySelectorAll('.needs-validation')
 
+Array.from(forms).forEach(form => {
 //Add an 'onsubmit' event listener for productform to add a product
 productForm.addEventListener('submit', (event) => {
+
+    if (!form.checkValidity()) {
+       event.preventDefault()
+       event.stopPropagation()
+    };
 
     //prevent default action of form submission
     event.preventDefault();
@@ -36,7 +43,8 @@ productForm.addEventListener('submit', (event) => {
             // Array length is 0, show error message
             alert("Error: Please check/fill-in in the US size checkboxes or the required fields before submitting the form.");
             return ; // Prevents form submission
-          }
+          };
+
 
         usSizes = usSizes.map(String);
         usSizes.toString();
@@ -59,7 +67,7 @@ productForm.addEventListener('submit', (event) => {
 
         //Example starter JavaScript for disabling form submissions if there are invalid fields
 
-        const forms = document.querySelectorAll('.needs-validation')
+        //const forms = document.querySelectorAll('.needs-validation')
 
 
 //        (() => {
@@ -80,8 +88,9 @@ productForm.addEventListener('submit', (event) => {
 //              }, false);
 //            })
 //          })
-
-});
+        form.classList.add('was-validated')
+    }, false);
+})
 
         // select file input
         const inputMain = document.querySelector('#imgMain');
