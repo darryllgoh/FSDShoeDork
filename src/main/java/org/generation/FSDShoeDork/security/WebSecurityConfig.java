@@ -44,7 +44,7 @@ public class WebSecurityConfig {
 
         http.formLogin().loginPage("/login");
 
-        http.formLogin().defaultSuccessUrl("/", true);
+        http.formLogin().defaultSuccessUrl("/index", true);
 
         http.formLogin().successHandler((request, response, authentication) -> {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -61,14 +61,14 @@ public class WebSecurityConfig {
 
         http.logout().logoutSuccessUrl("/index");
 
-        http.authorizeHttpRequests((requests) -> {
+        http.authorizeHttpRequests((requests) ->
                     requests
                             .requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
                     "/productImages/**", "/login", "/aboutus", "/register" ,"/user/**", "/shop",
                             "/common/**").permitAll()
                     .requestMatchers(new String[]{"/upload/**"}).hasRole("ADMIN")
-                    .requestMatchers(new String[]{"/cart/**"}).hasRole("USER");
-        });
+                    .requestMatchers(new String[]{"/cart/**"}).hasRole("USER")
+        );
         return http.build();
     }
 
