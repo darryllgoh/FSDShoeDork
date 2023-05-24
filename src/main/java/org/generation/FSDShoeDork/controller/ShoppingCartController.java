@@ -2,78 +2,71 @@ package org.generation.FSDShoeDork.controller;
 
 import org.generation.FSDShoeDork.repository.entity.Cart;
 import org.generation.FSDShoeDork.service.ShoppingCartService;
+import org.generation.FSDShoeDork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 @RestController
 @RequestMapping("/cart")
 public class ShoppingCartController {
 
-    @Value("$image.folder}")
+    @Value("${image.folder}")
     private String imageFolder;
 
     private final ShoppingCartService shoppingCartService;
+    private final UserService userService;
 
 
-    public ShoppingCartController(@Autowired ShoppingCartService shoppingCartService) {
+    public ShoppingCartController(@Autowired ShoppingCartService shoppingCartService, UserService userService) {
         this.shoppingCartService = shoppingCartService;
-
+        this.userService = userService;
     }
 
-    @Autowired
-    private ProductController productController;
-
-//    @CrossOrigin
-//    @GetMapping("/all")
-//    public Iterable<Cart> getShoppingCart() {
-//
-////        for (Cart cart: shoppingCartService.all())
-////        {
-////            Product product = productController.findProductById(cartEntry.getProduct().getId());
-////            cartEntry.getProduct().setImgMain(imageFolder + "/" + product.getImgMain());
-////            cartEntry.getProduct().setImgHover(imageFolder + "/" + product.getImgHover());
-////        }
-//
-//        return this.shoppingCartService.all();
-//
-//    }
 
     @CrossOrigin
     @GetMapping("/cartbyuser")
-    public Iterable<Cart> getShoppingCart() {
-        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //String currentPrincipalName = authentication.getName();
-        //Call getUserByName query to get the Id of the User
+    public Iterable<Cart> getShoppingCartByUserId() {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipalName = auth.getName();
+            Integer userId = userService.findUserIdByUserName(currentPrincipalName);
+            System.out.println(currentPrincipalName);
+            System.out.println(userId);
+            ArrayList<Cart> userCartItems = this.shoppingCartService.findCartByUserId(userId);
+            System.out.println(userCartItems);
 
-        return this.shoppingCartService.findCartByUserId(1);
+            //If productId is unique in HashSet, Prepend image folder directory to imageURL and add productId to HashSet
+            //If not unique, do not modify imageURL
+            HashSet<Integer> uniqueProductIds = new HashSet<>();
+            for (Cart cartItem: userCartItems) {
+                Integer productId = cartItem.getProductId();
+                if (!uniqueProductIds.contains(productId)) {
 
+                    //Prepend image folder directory to imageURL
+                    String setURLMain = imageFolder + "/" + cartItem.getProductImgMain();
+                    cartItem.setProductImgMain(setURLMain);
+                    uniqueProductIds.add(productId);
+                }
+            }
+            return userCartItems;
+        } catch (Exception e) {
+            System.out.println("Error message: " + e);
+            return null;
+        }
     }
 
-//    @CrossOrigin
-//    @GetMapping("/cart")
-//    public Iterable<ShoppingCart> getShoppingCart() {
-//
-//        for (ShoppingCart shoppingCart: ShoppingCartService.all())
-//        {
-//            // productImages/commonProjects-LugSoleLoafer1.jpg
-//            String setURLMain = imageFolder + "/" + shoppingCart.getProduct().getImgMain();
-//            shoppingCart.getProduct().setImgMain(setURLMain);
-//            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
-//            String setURLHover = imageFolder + "/" + shoppingCart.getProduct().getImgHover();
-//            shoppingCart.getProduct().setImgHover(setURLHover);
-//        }
-//
-//        return this.shoppingCartService.all();
-//
-//    }
-//
-//    @CrossOrigin
-//    @GetMapping("/{id}")
-//    public CartEntry findCartEntryById(@PathVariable Integer id) {
-//        return shoppingCartService.findById(id);
-//    }
-//
+    @CrossOrigin
+    @GetMapping("/cartbyuserlegacy")
+    public Iterable<Cart> getShoppingCartLegacy() {
+        return this.shoppingCartService.findCartByUserId(1);
+    }
+
     @CrossOrigin
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {

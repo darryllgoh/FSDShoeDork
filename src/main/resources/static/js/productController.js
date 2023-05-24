@@ -1,41 +1,10 @@
 // To get category link clicked on index page from localStorage (if any)
 let getClickedLink = null;
 getClickedLink = localStorage.getItem("categoryClicked");
-
+getCategoryAPI = 'http://localhost:8080/product/cat/' + getClickedLink;
 
 //Initialize productController
 let productController = [];
-
-//development APIs
-const addAPI= 'http://localhost:8080/product/add';
-const displayAllAPI = 'http://localhost:8080/product/all';
-const addCartAPI = 'http://localhost:8080/cart/add';
-let getCategoryAPI = 'http://localhost:8080/product/cat/' + getClickedLink;
-let getProductAPI = `http://localhost:8080/product/{id}`;
-
-//production APIs
-//const addAPI = 'https://TBC.azurewebsites.net/product/add';
-//const displayAllAPI = 'https://TBC.azurewebsites.net/product/all';
-//const addToCartAPI = 'https://TBC.azurewebsites.net/cart/add';
-// let getCategoryAPI = 'http://TBC.azurewebsites.net/product/cat/' + getClickedLink;
-//let getProductAPI = `http://TBC.azurewebsites.net/product/{id}`;
-
-
-function addProduct(name, description, brand, category, usSize, color, price, SKU, imgMain, imgHover) {
-    const productItem = {
-        name: name,
-        description: description,
-        brand: brand,
-        category: category,
-        usSize: usSize,
-        color: color,
-        price: price,
-        SKU: SKU,
-        imgMain: imgMain,
-        imgHover: imgHover
-    }
-}
-
 
 //GET API to get all products in product database table and display on website
 const displayProducts = (API) => {
@@ -108,4 +77,71 @@ const displayProductDetails = (index) => {
     //localStorage.setItem("productDetails",JSON.stringify(storedData[index]));
     // used storedData to stringify through to product page
     localStorage.setItem("productDetails",JSON.stringify(productController[index]));
+}
+
+// FILTERS
+
+// Targets all form controls in .filter-list and adds event listener which calls filterProduct() on change
+const filter = document.querySelector(".filter-list");
+filter.addEventListener('change', filterProduct);
+
+// This function is called onclick for every filter checkbox
+function filterProduct() {
+
+    // Assign variable for an array of category checkboxes that are checked
+    const categoryFilters = Array.from(document.querySelectorAll('input[name="category"]:checked'));
+
+    // Assign variable for an array of color checkboxes that are checked
+    const colorFilters = Array.from(document.querySelectorAll('input[name="color"]:checked'));
+
+    // Assign variable for an array of brand checkboxes that are checked
+    const brandFilters = Array.from(document.querySelectorAll('input[name="brand"]:checked'));
+
+    const filteredProducts = [];
+
+    /*
+    For each product in the productController, isMatched = false by default, unless we find a match in ANY of each if
+    statement, then isMatch = true and product is pushed to filteredProducts array.
+     */
+    productController.forEach((product) => {
+        let isMatched = false;
+
+        if (
+        // Check match versus list of selected categories (If no category filter selected, keep all product categories in selection)
+        (categoryFilters.length == 0 || categoryFilters.some(filter => filter.value.toLowerCase() === product.category.toLowerCase())) &&
+
+
+        // Check match versus list of selected colors (If no color filter selected, keep all product colors in selection)
+        (colorFilters.length == 0 || colorFilters.some(filter => filter.value.toLowerCase() === product.color.toLowerCase())) &&
+
+        // Check match versus list of selected brands (If no brand filter selected, keep all product brands in selection)
+        (brandFilters.length == 0 || brandFilters.some(filter => filter.value.toLowerCase() === product.brand.toLowerCase()))) {
+            isMatched = true;
+        }
+
+        if (isMatched) {
+            filteredProducts.push(product);
+        }
+    });
+
+    // Update the product list with the filtered products
+    renderProductPage(filteredProducts);
+
+    // changes between "Load more products" button to No Result output depending on filter result
+    if (filteredProducts.length == 0) {
+        document.querySelector('.load-more-btn').innerHTML = `<p class="pt-3 pb-5 mb-5">No product matched your filter(s)</p>`;
+    } else {
+        document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
+    }
+}
+
+// Reset filter and display all products
+function resetFilter() {
+    let checkboxes = document.querySelectorAll('input[type=checkbox]');
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+    }
+    productController = [];
+    displayProducts(displayAllAPI);
+    document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
 }

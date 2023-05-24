@@ -66,8 +66,9 @@ public class WebSecurityConfig {
                             .requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
                     "/productImages/**", "/login", "/aboutus", "/register" ,"/user/**", "/shop",
                             "/common/**").permitAll()
-                    .requestMatchers(new String[]{"/upload/**"}).hasRole("ADMIN")
-                    .requestMatchers(new String[]{"/cart/**"}).hasRole("USER");
+                            .requestMatchers("/cart/**").hasAnyRole("ADMIN","USER")
+                            .requestMatchers("/upload/**").hasRole("ADMIN");
+
         });
         return http.build();
     }

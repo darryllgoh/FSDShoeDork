@@ -16,8 +16,8 @@ Array.from(forms).forEach(form => {
 productForm.addEventListener('submit', (event) => {
 
     if (!form.checkValidity()) {
-       event.preventDefault()
-       event.stopPropagation()
+       event.preventDefault();
+       event.stopPropagation();
     };
 
     //prevent default action of form submission
