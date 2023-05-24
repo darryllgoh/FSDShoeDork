@@ -49,9 +49,11 @@ public class ProductController {
             // productImages/commonProjects-LugSoleLoafer1.jpg
             String setURLMain = imageFolder + "/" + image.getImgMain();
             image.setImgMain(setURLMain);
+            System.out.println(image.getImgMain());
             // productImages/Image/commonProjects-LugSoleLoafer2.jpg
             String setURLHover = imageFolder + "/" + image.getImgHover();
             image.setImgHover(setURLHover);
+            System.out.println(image.getImgHover());
         }
 
 

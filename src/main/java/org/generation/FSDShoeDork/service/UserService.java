@@ -17,5 +17,7 @@ public interface UserService {
 
     //Read an item from database - based on item Id
     User findById(int userId);
+
+    Integer findUserIdByUserName(String username);
 }
 

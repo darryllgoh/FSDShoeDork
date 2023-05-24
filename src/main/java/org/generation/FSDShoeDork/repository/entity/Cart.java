@@ -47,12 +47,34 @@ public class Cart {
         return product.getName();
     }
 
-    public String getProductDescription() {
-        return product.getDescription();
+    public String getProductBrand()
+    {
+        return product.getBrand();
+    }
+
+    public String getProductCategory()
+    {
+        return product.getCategory();
+    }
+
+    public String getProductColor() {
+        return product.getColor();
+    }
+
+    public Float getProductPrice() {
+        return product.getPrice();
+    }
+
+    public String getProductImgMain() {
+        return product.getImgMain();
     }
 
     public String getSizeSelected() {
         return sizeSelected;
+    }
+
+    public void setProductImgMain(String imgMain) {
+        this.product.setImgMain(imgMain);
     }
 
     public void setSizeSelected(String sizeSelected) {
