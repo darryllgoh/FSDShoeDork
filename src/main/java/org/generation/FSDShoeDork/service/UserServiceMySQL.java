@@ -3,6 +3,7 @@ package org.generation.FSDShoeDork.service;
 import org.generation.FSDShoeDork.repository.UserRepository;
 import org.generation.FSDShoeDork.repository.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -89,5 +90,13 @@ public class UserServiceMySQL implements UserService {
 //
 //        return false;
 //    }
+
+    @Override
+    public Integer findUserIdByUserName(String username) {
+        //optional is object that accept either a null (empty) or with items.
+        Optional<Integer> userOptional = userRepository.findUserIdByUserName(username);
+        Integer userIdResponse = userOptional.get();
+        return userIdResponse;
+    };
 
 }

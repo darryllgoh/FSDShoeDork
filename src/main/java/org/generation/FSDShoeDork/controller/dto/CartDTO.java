@@ -4,38 +4,25 @@
 //import org.generation.FSDShoeDork.repository.entity.Product;
 //import org.generation.FSDShoeDork.repository.entity.User;
 //
-//public class CartEntryDTO {
+//public class CartDTO {
 //
 //    private Product product;
 //
-//    private User user;
+//    private Integer Product_id;
+//
+//    private Integer User_id;
 //
 //    private String sizeSelected;
 //
 //    private  Integer qty;
 //
-//    public CartEntryDTO(Product product, User user, String sizeSelected, Integer qty) {
-//        this.product = product;
-//        this.user = user;
+//    public CartEntryDTO(Integer Product_id, Integer User_id, String sizeSelected, Integer qty) {
+//        this.product = Product_id;
+//        this.User_id = User_id;
 //        this.sizeSelected = sizeSelected;
 //        this.qty = qty;
 //    }
 //
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 //
 //    public String getSizeSelected() {
 //        return sizeSelected;

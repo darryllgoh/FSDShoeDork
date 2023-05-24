@@ -1,7 +1,4 @@
-//development APIs
-const addAPI= 'http://localhost:8080/product/add';
-const displayAPI = 'http://localhost:8080/product/all';
-
+//Create object from form & call fetch method to POST to backend
 function addProduct(name, description, brand, category, usSizes, color, price, SKU, imgMain, imgHover, imageObjectMain, imageObjectHover)
 {
    const formData = new FormData();
