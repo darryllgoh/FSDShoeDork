@@ -26,7 +26,7 @@ function addProduct(name, description, brand, category, usSizes, color, price, S
                 document.getElementById("productForm").reset();
             }
             else {
-               alert("Something went wrong. Please try again")
+               alert("Please complete all fields before submission")
             }
         })
         .catch((error) => {

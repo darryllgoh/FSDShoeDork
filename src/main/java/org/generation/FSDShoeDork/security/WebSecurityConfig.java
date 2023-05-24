@@ -44,7 +44,7 @@ public class WebSecurityConfig {
 
         http.formLogin().loginPage("/login");
 
-        http.formLogin().defaultSuccessUrl("/", true);
+        http.formLogin().defaultSuccessUrl("/index", true);
 
         http.formLogin().successHandler((request, response, authentication) -> {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -61,16 +61,15 @@ public class WebSecurityConfig {
 
         http.logout().logoutSuccessUrl("/index");
 
-        http.authorizeHttpRequests((requests) -> {
+        http.authorizeHttpRequests((requests) ->
                     requests
                             .requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
-                    "/productImages/**", "/login", "/aboutus", "/register" ,"/user/**", "/shop",
+                    "/productImages/**", "/login", "/aboutus", "/register", "/user/**", "/shop",
                             "/common/**").permitAll()
-                            .requestMatchers("/cart/**").hasAnyRole("ADMIN","USER")
-                            .requestMatchers("/upload/**").hasRole("ADMIN");
-
-        });
-        return http.build();
+                    .requestMatchers("/upload/**").hasRole("ADMIN")
+                    .requestMatchers("/cart/**").hasAnyRole("ADMIN", "USER")
+        );
+        return http.build(); //ignorematcher
     }
 
 }

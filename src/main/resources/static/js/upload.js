@@ -15,9 +15,9 @@ Array.from(forms).forEach(form => {
 //Add an 'onsubmit' event listener for productform to add a product
 productForm.addEventListener('submit', (event) => {
 
-    if (!form.checkValidity()) {
-       event.preventDefault();
-       event.stopPropagation();
+    if (!productForm.checkValidity()) {
+       event.preventDefault()
+       event.stopPropagation()
     };
 
     //prevent default action of form submission
@@ -88,7 +88,7 @@ productForm.addEventListener('submit', (event) => {
 //              }, false);
 //            })
 //          })
-        form.classList.add('was-validated')
+        productForm.classList.add('was-validated')
     }, false);
 })
 

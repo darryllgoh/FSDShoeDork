@@ -19,5 +19,7 @@ public interface UserService {
     User findById(int userId);
 
     Integer findUserIdByUserName(String username);
+  
+    //    boolean isUserExists(String username);
 }
 

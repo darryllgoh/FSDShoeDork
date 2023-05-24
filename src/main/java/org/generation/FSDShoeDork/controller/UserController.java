@@ -67,6 +67,10 @@ public class UserController {
     @PostMapping("/add")
     public void save(  @RequestParam(name="username", required = true) String username,
                        @RequestParam(name="password", required = true) String password)
+
+//        if (userService.isUserExists(username)) {
+//            throw new IllegalArgumentException("User already exists");
+//        }
     {
         UserDTO userDTO = new UserDTO(username, new BCryptPasswordEncoder().encode(password));
         userService.save(new User(userDTO));

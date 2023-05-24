@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Service
 public class UserServiceMySQL implements UserService {
@@ -64,6 +68,28 @@ public class UserServiceMySQL implements UserService {
         User userResponse = user.get();
         return userResponse;
     }
+
+//    public boolean isUserExists(String username) {
+//        // Assuming you have a Connection object representing your MySQL database connection
+//        try (Connection connection = userRepository.findByUsername(username)) {
+//            String query = "SELECT COUNT(*) FROM users WHERE username = ?";
+//            try (PreparedStatement statement = connection.prepareStatement(query)) {
+//                statement.setString(1, username);
+//
+//                try (ResultSet resultSet = statement.executeQuery()) {
+//                    if (resultSet.next()) {
+//                        int count = resultSet.getInt(1);
+//                        return count > 0;
+//                    }
+//                }
+//            }
+//        } catch (SQLException e) {
+//            // Handle the exception appropriately
+//            e.printStackTrace();
+//        }
+//
+//        return false;
+//    }
 
     @Override
     public Integer findUserIdByUserName(String username) {
