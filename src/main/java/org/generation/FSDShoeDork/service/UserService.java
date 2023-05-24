@@ -17,5 +17,8 @@ public interface UserService {
 
     //Read an item from database - based on item Id
     User findById(int userId);
+
+//    boolean isUserExists(String username);
+
 }
 

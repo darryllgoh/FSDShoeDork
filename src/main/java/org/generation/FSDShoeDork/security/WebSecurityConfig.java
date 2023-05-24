@@ -64,12 +64,12 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((requests) ->
                     requests
                             .requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
-                    "/productImages/**", "/login", "/aboutus", "/register" ,"/user/**", "/shop",
+                    "/productImages/**", "/login", "/aboutus", "/register", "/user/**", "/shop",
                             "/common/**").permitAll()
-                    .requestMatchers(new String[]{"/upload/**"}).hasRole("ADMIN")
-                    .requestMatchers(new String[]{"/cart/**"}).hasRole("USER")
+                    .requestMatchers("/upload/**").hasRole("ADMIN")
+                    .requestMatchers("/cart/**").hasAnyRole("ADMIN", "USER")
         );
-        return http.build();
+        return http.build(); //ignorematcher
     }
 
 }

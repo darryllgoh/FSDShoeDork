@@ -11,7 +11,7 @@ Array.from(forms).forEach(form => {
 //Add an 'onsubmit' event listener for productform to add a product
 registerForm.addEventListener('submit', (event) => {
 
-    if (!form.checkValidity()) {
+    if (!registerForm.checkValidity()) {
        event.preventDefault()
        event.stopPropagation()
     };
@@ -49,8 +49,8 @@ registerForm.addEventListener('submit', (event) => {
 //              }, false);
 //            })
 //          })
-        form.classList.add('was-validated')
-    }, false);
+        //form.classList.add('was-validated')
+    });
 })
 
 function validateForm() {
