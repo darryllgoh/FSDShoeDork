@@ -2,7 +2,7 @@
 const addAPI= 'http://localhost:8080/product/add';
 const displayAllAPI = 'http://localhost:8080/product/all';
 let getCategoryAPI = 'http://localhost:8080/product/cat/' // + getClickedLink;
-let getProductAPI = `http://localhost:8080/product/` // + getClickedId;
+let getProductAPI = 'http://localhost:8080/product/' // + getClickedId;
 const addCartAPI = 'http://localhost:8080/cart/add';
 const getCartAPI = 'http://localhost:8080/cart/cartbyuser';
 const getCartLegacyAPI = 'http://localhost:8080/cart/cartbyuserlegacy';

@@ -66,8 +66,9 @@ public class WebSecurityConfig {
                             .requestMatchers("/", "/product/**", "/index", "/item/**", "/image/**", "/js/**", "/css/**",
                     "/productImages/**", "/login", "/aboutus", "/register", "/user/**", "/shop",
                             "/common/**").permitAll()
-                    .requestMatchers("/upload/**").hasRole("ADMIN")
                     .requestMatchers("/cart/**").hasAnyRole("ADMIN", "USER")
+                    .requestMatchers("/upload/**").hasRole("ADMIN")
+
         );
         return http.build(); //ignorematcher
     }
