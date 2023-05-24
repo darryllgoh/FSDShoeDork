@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 @RestController
@@ -34,12 +35,12 @@ public class ShoppingCartController {
     public Iterable<Cart> getShoppingCartByUserId() {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            //get username from authentication object
             String currentPrincipalName = auth.getName();
+            //get userId from userService method
             Integer userId = userService.findUserIdByUserName(currentPrincipalName);
-            System.out.println(currentPrincipalName);
-            System.out.println(userId);
+            //return ArrayList of CartItems by logged-in user
             ArrayList<Cart> userCartItems = this.shoppingCartService.findCartByUserId(userId);
-            System.out.println(userCartItems);
 
             //If productId is unique in HashSet, Prepend image folder directory to imageURL and add productId to HashSet
             //If not unique, do not modify imageURL
@@ -48,7 +49,6 @@ public class ShoppingCartController {
                 Integer productId = cartItem.getProductId();
                 if (!uniqueProductIds.contains(productId)) {
 
-                    //Prepend image folder directory to imageURL
                     String setURLMain = imageFolder + "/" + cartItem.getProductImgMain();
                     cartItem.setProductImgMain(setURLMain);
                     uniqueProductIds.add(productId);
@@ -56,6 +56,39 @@ public class ShoppingCartController {
             }
             return userCartItems;
         } catch (Exception e) {
+            System.out.println("Error message: " + e);
+            return null;
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/costbyuser")
+    public HashMap<String, Double> calculateCartCosts(){
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            //get username from authentication object
+            String currentPrincipalName = auth.getName();
+            //get userId from userService method
+            Integer userId = userService.findUserIdByUserName(currentPrincipalName);
+
+            //Getting calculations stored in variables
+            double subtotal = shoppingCartService.calculateSubtotalByUserId(userId);
+            int cartQty = shoppingCartService.calculateCartQtyByUserId(userId);
+            double taxAmount = shoppingCartService.calculateCartTax(subtotal);
+            double shippingCost = shoppingCartService.calculateShoppingCost(subtotal, taxAmount, cartQty);
+            double totalCost = shoppingCartService.calculateTotalCost(subtotal, taxAmount, shippingCost);
+
+            //Create a HashMap of information to send when API Get method is called
+            HashMap<String, Double> CartCosts = new HashMap<>();
+            CartCosts.put("subtotal", subtotal);
+            CartCosts.put("cartQty", (double) cartQty);
+            CartCosts.put("taxAmount", taxAmount);
+            CartCosts.put("shippingCost", shippingCost);
+            CartCosts.put("totalCost", totalCost);
+
+            return CartCosts;
+
+        } catch( Exception e) {
             System.out.println("Error message: " + e);
             return null;
         }

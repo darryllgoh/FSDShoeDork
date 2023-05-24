@@ -122,13 +122,14 @@ function filterProduct() {
         if (isMatched) {
             filteredProducts.push(product);
         }
+        productController = filteredProducts;
     });
 
     // Update the product list with the filtered products
-    renderProductPage(filteredProducts);
+    renderProductPage(productController);
 
     // changes between "Load more products" button to No Result output depending on filter result
-    if (filteredProducts.length == 0) {
+    if (productController.length == 0) {
         document.querySelector('.load-more-btn').innerHTML = `<p class="pt-3 pb-5 mb-5">No product matched your filter(s)</p>`;
     } else {
         document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
