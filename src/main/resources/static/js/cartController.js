@@ -1,4 +1,3 @@
-console.log("cart.js is working!");
 let cartController = [];
 
 const getCartByUserId = () => {
@@ -13,7 +12,7 @@ const getCartByUserId = () => {
             //Iterates through array of cart objects and adds them to cartController array
             data.forEach(cart => {
                 cartController.push(cart);
-            })
+            });
 
             //render cartController
             renderCart(cartController);
@@ -21,14 +20,36 @@ const getCartByUserId = () => {
         .catch(error => {
             console.log(error);
         });
+
+    // Fetch calculateCartCosts API
+    fetch(getCartCostAPI)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Fetching: getCartCostAPI");
+            console.log("Received data");
+            console.log(data);
+
+            renderCartSummary(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
 
 const renderCart = (array) => {
+    // Do a for loop to sum up qty for each cart item and determine plurality of "item"
     let plurality = "";
-    (array.length < 2) ? plurality = "item" : plurality = "items";
+    let totalQty = 0;
+    for (let j = 0; j < array.length; j++) {
+        totalQty += array[j].qty;
+    }
+
+    (totalQty < 2) ? plurality = "item" : plurality = "items";
+
     let details = `
-    <h2 class="bag-header">My Bag <span><p>(${array.length} ${plurality})</p></span></h2>
+    <h2 class="bag-header">My Bag <span><p>(${totalQty} ${plurality})</p></span></h2>
     `;
+    // Do a for loop to iterate through the rest of cart items
     for (let i = 0; i < array.length; i++) {
         details +=
         `
@@ -61,20 +82,51 @@ const renderCart = (array) => {
             </div>
         </div>
         `;
-    }
+    };
     details += `</div>`;
     document.querySelector("#cartList").innerHTML = details;
 }
 
-//get Cart By UserId and render on cart page load
+renderCartSummary = (data) => {
+    let shippingCost = data.shippingCost.toLocaleString('en');
+    (shippingCost == 0) ? shippingCost = "FREE" : "$" + shippingCost.toLocaleString('en');
+    let subtotal = data.subtotal.toLocaleString('en');
+    let taxAmount = data.taxAmount.toLocaleString('en');
+    let totalCost = data.totalCost.toLocaleString('en');
+
+    orderSummary = `
+        <h3>Order Summary</h3>
+        <div class="my-4">
+            <div class="d-flex justify-content-between border-bottom">
+                <p>Subtotal</p>
+                <p id="subtotal">$${subtotal}</p>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                <p>Taxes</p>
+                <p id="taxAmount">$${taxAmount}</p>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                <p>Shipping</p>
+                <p id="shippingCost">${shippingCost}</p>
+            </div>
+            <div class="d-flex justify-content-between border-top pt-3">
+                <h5>Total</h5>
+                <h5 id="totalCost">$${totalCost}</h5>
+            </div>
+        </div>
+    `;
+
+    document.querySelector('#orderSummary').innerHTML = orderSummary;
+}
+
+// get Cart By UserId and render on cart page load
 getCartByUserId();
 
 
-//Deletes cart item on user click on delete button
+// Deletes cart item on user click on delete button
 deleteCartById = clickedId => {
-    //reassigns delete cart API to unique
+    // reassigns delete cart API to unique
     deleteCartAPI += clickedId;
-    console.log(`after += ${deleteCartAPI}`);
     fetch(deleteCartAPI, { method: 'DELETE' })
         .then(response => {
         console.log(response.status);   // Will show you the status
@@ -91,6 +143,6 @@ deleteCartById = clickedId => {
             console.error('Error:', error);
             alert("Error deleting cart item!");
         });
+    // reset deleteCartAPI to base string
     deleteCartAPI = deleteCartAPI.replace("/cart/" + clickedId, "/cart/");
-    console.log(`after -= ${deleteCartAPI}`);
 }

@@ -24,127 +24,48 @@
     <div th:insert="~{common/navbar :: navbar}" id="navbar"></div>
     <!-- END OF PROMO TEXT & NAVBAR -->
 
+    <!-- CART BLOCK -->
     <div class="container mt-4 mb-5">
       <div class="row">
+        <!-- CART ITEMS -->
         <div class="col-12 col-lg-9" id="cartList">
-<!--          <h2 class="bag-header">My Bag <span><p>(3 items)</p></span></h2>-->
-<!--            -->
-<!--          &lt;!&ndash; PRODUCT BLOCK &ndash;&gt;-->
-<!--          <div class="container my-4 pb-4 pt-3 border-bottom">-->
-<!--            <div class="row">-->
-<!--              <div class="col-3">-->
-<!--                <img class="img-fluid" src="/image/commonProjects-ArchillesLow1.jpg" alt="">-->
-<!--              </div>-->
-<!--              <div class="col-6">-->
-<!--                <h5>Achilles Low 1</h5>-->
-<!--                <p class="mb-2 word-break">Common Projects/Sneaker/White</p>-->
-<!--                <p>Size: 9</p>-->
-<!--                <div>-->
-<!--                  <label for="quantity" class="mt-4 mb-1">Quantity:</label>-->
-<!--                  <br>-->
-<!--                  <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" class="px-1 input-short">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-3">-->
-<!--                <p class="fw-bold mb-2">Total Price</p>-->
-<!--                <p>$100</p>-->
-<!--                <button class="delete-btn">-->
-<!--                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">-->
-<!--                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>-->
-<!--                  </svg>-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          &lt;!&ndash; END OF PRODUCT BLOCK &ndash;&gt;-->
-
-<!--          &lt;!&ndash; PRODUCT BLOCK &ndash;&gt;-->
-<!--          <div class="container my-4 pb-4 pt-3 border-bottom">-->
-<!--            <div class="row">-->
-<!--              <div class="col-3">-->
-<!--                <img class="img-fluid" src="/image/commonProjects-ArchillesLow1.jpg" alt="">-->
-<!--              </div>-->
-<!--              <div class="col-6">-->
-<!--                <h5>Achilles Low 1</h5>-->
-<!--                <p class="mb-2 word-break">Common Projects/Sneaker/White</p>-->
-<!--                <p>Size: 9</p>-->
-<!--                <div>-->
-<!--                  <label for="quantity" class="mt-4 mb-1">Quantity:</label>-->
-<!--                  <br>-->
-<!--                  <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" class="px-1 input-short">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-3">-->
-<!--                <p class="fw-bold mb-2">Total Price</p>-->
-<!--                <p>$100</p>-->
-<!--                <button class="delete-btn">-->
-<!--                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">-->
-<!--                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>-->
-<!--                  </svg>-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          &lt;!&ndash; END OF PRODUCT BLOCK &ndash;&gt;-->
-
-<!--          &lt;!&ndash; PRODUCT BLOCK &ndash;&gt;-->
-<!--          <div class="container my-4 pb-4 pt-3 border-bottom">-->
-<!--            <div class="row">-->
-<!--              <div class="col-3">-->
-<!--                <img class="img-fluid" src="/image/commonProjects-ArchillesLow1.jpg" alt="">-->
-<!--              </div>-->
-<!--              <div class="col-6">-->
-<!--                <h5>Achilles Low 1</h5>-->
-<!--                <p class="mb-2 word-break">Common Projects/Sneaker/White</p>-->
-<!--                <p>Size: 9</p>-->
-<!--                <div>-->
-<!--                  <label for="quantity" class="mt-4 mb-1">Quantity:</label>-->
-<!--                  <br>-->
-<!--                  <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" class="px-1 input-short">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-3">-->
-<!--                <p class="fw-bold mb-2">Total Price</p>-->
-<!--                <p>$100</p>-->
-<!--                <button class="delete-btn">-->
-<!--                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">-->
-<!--                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>-->
-<!--                  </svg>-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          &lt;!&ndash; END OF PRODUCT BLOCK &ndash;&gt;-->
-
+            Loading...
         </div>
-
+        <!-- END OF CART ITEMS -->
 
         <!-- ORDER SUMMARY -->
         <div class="col-12 col-lg-3">
-          <h3>Order Summary</h3>
-          <div class="my-4">
-            <div class="d-flex justify-content-between border-bottom">
-              <p>Subtotal</p>
-              <p>$300</p>
+            <div id="orderSummary">
+                <h3>Order Summary</h3>
+                <div class="my-4">
+                    <div class="d-flex justify-content-between border-bottom">
+                        <p>Subtotal</p>
+                        <p id="subtotal">Loading...</p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <p>Taxes</p>
+                        <p id="taxAmount">Loading...</p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <p>Shipping</p>
+                        <p id="shippingCost">Loading...</p>
+                    </div>
+                    <div class="d-flex justify-content-between border-top pt-3">
+                        <h5>Total</h5>
+                        <h5 id="totalCost">Loading...</h5>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-between mt-3">
-              <p>Shipping</p>
-              <p>FREE</p>
-            </div>
-            <div class="d-flex justify-content-between border-top pt-3">
-              <h5>Total</h5>
-              <h5>$300</h5>
-            </div>
-          </div>
-          
-          <div class="d-grid gap-3 guest-member-btn pt-3 mb-3">
-            <button class="btn btn-dark rounded-pill py-3" type="button"><h5>Guest Checkout</h5></button>
-            <button class="btn btn-dark rounded-pill py-3" type="button"><h5>Member Checkout</h5></button>
-          </div>
-        </div>
 
+            <div class="d-grid gap-3 guest-member-btn pt-3 mb-3">
+                <button class="btn btn-dark rounded-pill py-3" type="button"><h5>Guest Checkout</h5></button>
+                <button class="btn btn-dark rounded-pill py-3" type="button"><h5>Member Checkout</h5></button>
+            </div>
+        </div>
+        <!-- END OF ORDER SUMMARY -->
       </div>
     </div>
+    <!-- END OF CART BLOCK -->
 
     <!-- FOOTER -->
     <div th:insert="~{common/footer :: footer}" id="footer"></div>

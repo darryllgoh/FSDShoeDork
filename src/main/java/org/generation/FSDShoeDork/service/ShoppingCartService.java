@@ -10,17 +10,20 @@ public interface ShoppingCartService {
     ArrayList<Cart> findCartByUserId(Integer userId);
 
 //    //Save method is for 2 purposes - Create new shopping cart & Update existing shoppingCart
-//    Cart save(Cart cartEntry);
+//    Cart save(Cart cart);
 //
     //Delete shoppingCart from database - based on shoppingCart ID
     void delete(int shoppingCartId);
-//
-//    //Read all shoppingCart items from database
-//    ArrayList<Cart> all();
-//
-//    //Read a shoppingCart item from database - base on shoppingCart ID
-//    Cart findById(int shoppingCartId);
 
+    double calculateSubtotalByUserId(Integer userId);
+
+    int calculateCartQtyByUserId(Integer userId);
+
+    double calculateCartTax(double subtotal);
+
+    double calculateShoppingCost(double subtotal, double taxAmount, int cartQty);
+
+    double calculateTotalCost(double subtotal, double taxAmount, double shippingCost);
 
 
 }

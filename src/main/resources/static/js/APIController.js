@@ -5,6 +5,7 @@ let getCategoryAPI = 'http://localhost:8080/product/cat/' // + getClickedLink;
 let getProductAPI = 'http://localhost:8080/product/' // + getClickedId;
 const addCartAPI = 'http://localhost:8080/cart/add';
 const getCartAPI = 'http://localhost:8080/cart/cartbyuser';
+const getCartCostAPI = 'http://localhost:8080/cart/costbyuser';
 const getCartLegacyAPI = 'http://localhost:8080/cart/cartbyuserlegacy';
 let deleteCartAPI = 'http://localhost:8080/cart/' // + getDeleteId;
 
@@ -15,5 +16,6 @@ let deleteCartAPI = 'http://localhost:8080/cart/' // + getDeleteId;
 //let getProductAPI = `http://TBC.azurewebsites.net/product/` // + getClickedId;
 //const addCartAPI = 'https://TBC.azurewebsites.net/cart/add';
 //const getCartAPI = 'http://TBC.azurewebsites.net/cart/cartbyuser';
+//const getCartCostAPI = 'http://TBC.azurewebsites.net/cart/costbyuser';
 //const getCartLegacyAPI = 'https://TBC.azurewebsites.net/cart/cartbyuserlegacy';
 //let deleteCartAPI = 'http://TBC.azurewebsites.net/cart/' // + getDeleteId;
