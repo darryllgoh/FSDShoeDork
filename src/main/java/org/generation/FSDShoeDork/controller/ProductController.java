@@ -52,6 +52,7 @@ public class ProductController {
             // productImages/Image/commonProjects-LugSoleLoafer2.jpg
             String setURLHover = imageFolder + "/" + image.getImgHover();
             image.setImgHover(setURLHover);
+
         }
 
 
