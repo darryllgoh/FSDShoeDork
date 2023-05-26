@@ -55,23 +55,6 @@ sizeButtons.forEach(button => {
   });
 });
 
-
-//function addToBag(inputObject) {
-//  const addToBagProduct = {
-//    name: inputObject.name,
-//    description: inputObject.description,
-//    brand: inputObject.brand,
-//    category: inputObject.category,
-//    usSize: usSizeSelected,
-//    color: inputObject.color,
-//    price: inputObject.price,
-//    SKU: inputObject.SKU,
-//    imgMain: inputObject.imgMain,
-//    imgHover: inputObject.imgHover
-//  }
-//  return addToBagProduct;
-//}
-
 const addToBagButton = document.querySelector('#addtoBag');
 
 //Added an event listener to ADD TO BAG button to validate that size button is selected prior to creating addToBagProduct object (for ProductDTO)
@@ -86,29 +69,35 @@ addToBagButton.addEventListener('click', () => {
 
   console.log(typeof usSizeSelected);
   console.log(usSizeSelected);
+  console.log(convertProduct.id)
   console.log("addToBag Object:");
   console.log(convertProduct);
 
   //POST API to be added later
   const formData = new FormData();
-  formData.append('product_id', convertProduct.name);
-  formData.append('user_id', 1);
+  formData.append('Product_id', convertProduct.id);
+//  formData.append('user_id', 1);        //Comment out for addCartAPI
   formData.append('sizeSelected', usSizeSelected);
   formData.append('qty', 1);
 
-
+//addCartAPI
+//addLegacyAPI
   fetch(addCartAPI, {
       method: 'POST',
       body: formData
       })
-      .then(function(response) {
-          console.log(response.status); // Will show you the status eg. 200 ok, 500, 404
-          if (response.ok) {
-              alert("Successfully Added Product To Cart!");
-          }
-          else {
-             alert("Something went wrong. Please try again");
-          }
+      .then(response => response.json())
+      .then(HttpStatusCode => {
+        console.log(HttpStatusCode);
+        if (HttpStatusCode == 201) {
+            alert("Successfully added product to cart!");
+        } else if (HttpStatusCode == 403){
+            alert("Please login to add to add to cart.");
+        } else if (HttpStatusCode == 404) {
+            alert("Product not found.");
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
       })
       .catch((error) => {
           console.error('Error:', error);

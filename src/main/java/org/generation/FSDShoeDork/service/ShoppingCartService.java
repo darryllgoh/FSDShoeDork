@@ -9,9 +9,9 @@ public interface ShoppingCartService {
     //Read all shoppingCart items by User ID
     ArrayList<Cart> findCartByUserId(Integer userId);
 
-//    //Save method is for 2 purposes - Create new shopping cart & Update existing shoppingCart
-//    Cart save(Cart cart);
-//
+    //Save method is for 2 purposes - Create new shopping cart & Update existing shoppingCart
+    Cart save(Cart cart);
+
     //Delete shoppingCart from database - based on shoppingCart ID
     void delete(int shoppingCartId);
 

@@ -60,9 +60,11 @@
             Featured
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Featured</a></li>
-            <li><a class="dropdown-item" href="#">Price: Low-High</a></li>
-            <li><a class="dropdown-item" href="#">Price: High-Low</a></li>
+            <li><a class="dropdown-item dropdown-option" href="#" id="default">Featured</a></li>
+            <li><a class="dropdown-item dropdown-option" href="#" id="priceLowToHigh">Price: Low-High</a></li>
+            <li><a class="dropdown-item dropdown-option" href="#" id="priceHighToLow">Price: High-Low</a></li>
+            <li><a class="dropdown-item dropdown-option" href="#" id="newestToOldest">Added: Newest-Oldest</a></li>
+            <li><a class="dropdown-item dropdown-option" href="#" id="oldestToNewest">Added: Oldest-Newest</a></li>
           </ul>
         </div>
 
@@ -139,7 +141,7 @@
   <div class="container py-3 mb-5">
     <div class="row">
       <div class="col text-center load-more-btn">
-        <button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>
+<!--        <button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>-->
       </div>
     </div>
   </div>
@@ -176,11 +178,9 @@
       });
 
       /* Toggle between sort by: items */
-      $(document).ready(function () {
-        $('.dropdown-menu a.dropdown-item').click(function () {
-          const text = $(this).text();
-          $('.dropdown-toggle').html(text);
-        });
+      $('.dropdown-menu a.dropdown-item').click(function () {
+        const text = $(this).text();
+        $('.dropdown-toggle').html(text);
       });
       /* Toggle between sort by: items */
 

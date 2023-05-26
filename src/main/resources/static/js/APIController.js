@@ -4,9 +4,10 @@ const displayAllAPI = 'http://localhost:8080/product/all';
 let getCategoryAPI = 'http://localhost:8080/product/cat/' // + getClickedLink;
 let getProductAPI = 'http://localhost:8080/product/' // + getClickedId;
 const addCartAPI = 'http://localhost:8080/cart/add';
+const addLegacyAPI = 'http://localhost:8080/cart/addlegacy'     //Testing only
 const getCartAPI = 'http://localhost:8080/cart/cartbyuser';
 const getCartCostAPI = 'http://localhost:8080/cart/costbyuser';
-const getCartLegacyAPI = 'http://localhost:8080/cart/cartbyuserlegacy';
+const getCartLegacyAPI = 'http://localhost:8080/cart/cartbyuserlegacy';     //Testing only
 let deleteCartAPI = 'http://localhost:8080/cart/' // + getDeleteId;
 
 //production APIs

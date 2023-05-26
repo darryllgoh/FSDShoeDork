@@ -1,14 +1,21 @@
 package org.generation.FSDShoeDork.controller;
 
+import org.generation.FSDShoeDork.controller.dto.CartDTO;
 import org.generation.FSDShoeDork.repository.entity.Cart;
+import org.generation.FSDShoeDork.repository.entity.Product;
+import org.generation.FSDShoeDork.service.ProductService;
 import org.generation.FSDShoeDork.service.ShoppingCartService;
 import org.generation.FSDShoeDork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,10 +30,13 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
 
+    private final ProductService productService;
 
-    public ShoppingCartController(@Autowired ShoppingCartService shoppingCartService, UserService userService) {
+    public ShoppingCartController(@Autowired ShoppingCartService shoppingCartService, UserService userService,
+                                  ProductService productService) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
+        this.productService = productService;
     }
 
 
@@ -105,25 +115,66 @@ public class ShoppingCartController {
     public void delete(@PathVariable Integer id) {
         shoppingCartService.delete(id);
     }
-//
-//    @CrossOrigin
-//    @PostMapping("/add")
-//    public void save(@RequestParam(name="Product_id", required = true) Integer Product_id,
-//                     @RequestParam(name="User_id", required = true) Integer User_id,
-//                     @RequestParam(name="sizeSelected", required = true) String sizeSelected,
-//                     @RequestParam(name="qty", required = true) Integer qty) throws IOException {
-//        // Returns Product object / null
-//        Product productOptional = productService.findById(Product_id);
-//
-//        // Returns User object / null
-//        User userOptional = userService.findById(User_id);
-//
-//        // Validate whether productOptional is an object
-//        if (productOptional != null && userOptional != null) {
-//            CartEntryDTO cartEntryDTO = new CartEntryDTO(productOptional, userOptional, sizeSelected, qty);
-//            shoppingCartService.save(new CartEntry(cartEntryDTO));
-//        }
-//    }
-//
 
+    @CrossOrigin
+    @PostMapping("/add")
+    public int save(@RequestParam(name="Product_id", required = true) Integer Product_id,
+                                       @RequestParam(name="sizeSelected", required = true) String sizeSelected,
+                                       @RequestParam(name="qty", required = true) Integer qty) throws IOException {
+        System.out.println("1st step reached");
+        // Returns Product object / null
+        Product productOptional = productService.findById(Product_id);
+        System.out.println("2nd step reached");
+        // Returns Not Found HTTP status if product is not found based on Product_id
+        if (productOptional == null) {
+            //return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something went wrong. Product not found.");
+            System.out.println("3rd step reached");
+            return 404;
+        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("4th step reached");
+        // Returns Unauthorized HTTP status if User is not logged in
+        if ( auth == null || auth instanceof AnonymousAuthenticationToken) {
+            //return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You need to login to add items to cart.");
+            System.out.println("5th step reached");
+            return 403;
+        }
+        //get username from authentication object
+        String currentPrincipalName = auth.getName();
+        System.out.println("6th step reached");
+
+        //get User_id from userService method
+        Integer User_id = userService.findUserIdByUserName(currentPrincipalName);
+        System.out.println("7th step reached");
+
+
+        // Create new Cart object, save it and return HTTP status OK
+        CartDTO cartDTO = new CartDTO(Product_id, User_id, sizeSelected, qty);
+        System.out.println("8th step reached");
+
+        shoppingCartService.save(new Cart(cartDTO));
+        System.out.println("9th step reached");
+
+        // return ResponseEntity.status(HttpStatus.CREATED).body("Product added to cart successfully.");
+        return 201;
+    }
+
+    @CrossOrigin
+    @PostMapping("/addlegacy")
+    public ResponseEntity<String> save(@RequestParam(name="Product_id", required = true) Integer Product_id,
+                                       @RequestParam(name="User_id", required = true) Integer User_id,
+                                       @RequestParam(name="sizeSelected", required = true) String sizeSelected,
+                                       @RequestParam(name="qty", required = true) Integer qty) throws IOException {
+        // Returns Product object / null
+        Product productOptional = productService.findById(Product_id);
+        // Returns Not Found HTTP status if product is not found based on Product_id
+        if (productOptional == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something went wrong. Product not found.");
+        }
+
+        // Create new Cart object, save it and return HTTP status OK
+        CartDTO cartDTO = new CartDTO(Product_id, User_id, sizeSelected, qty);
+        shoppingCartService.save(new Cart(cartDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body("Product added to cart successfully.");
+    }
 }

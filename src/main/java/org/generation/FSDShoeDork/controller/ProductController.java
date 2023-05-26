@@ -133,15 +133,14 @@ public class ProductController {
     @GetMapping("/cat/{category}")
     public Iterable<Product> getProductByCategory(@PathVariable String category) {
         //To display images from local folder
-        System.out.println(category);
-        for (Product image: productService.getProductByCategory(category))
+        for (Product product: productService.getProductByCategory(category))
         {
             // productImages/commonProjects-LugSoleLoafer1.jpg
-            String setURLMain = imageFolder + "/" + image.getImgMain();
-            image.setImgMain(setURLMain);
+            String newURLMain = imageFolder + "/" + product.getImgMain();
+            product.setImgMain(newURLMain);
             // productImages/Image/commonProjects-LugSoleLoafer2.jpg
-            String setURLHover = imageFolder + "/" + image.getImgHover();
-            image.setImgHover(setURLHover);
+            String newURLHover = imageFolder + "/" + product.getImgHover();
+            product.setImgHover(newURLHover);
         }
 
         /* To display images from the Server Container */
