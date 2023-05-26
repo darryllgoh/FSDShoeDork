@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Dork</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+<!-- NOT IMPORTANT, CSS ONLY -->
+    <style>
+        body{
+    min-height: 100vh;
+    font-family: monospace;
+    background-color: lightgrey;
+    margin: 0;
+}
+.container{
+    background-color: darkgrey;
+    width: 1000px;
+    max-width:  100%;
+    margin: 50px auto 0;
+    border-radius: 10px;
+}
+.filter{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 32.666% 32.666% 32.666%;
+    column-gap: 1%;
+    row-gap: 10px;
+}
+.filter .item{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filter .item select,
+.filter .item input,
+.filter .item button{
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    border-left: 1px solid #ddd;
+    outline: none;
+}
+.filter .item label{
+    display: block;
+    width: 40%;
+    padding: 0 10px;
+}
+.filter .item.submit button{
+    background-color: black;
+    color: #fff;
+}
+.countResults{
+    font-size: xx-large;
+    text-align: center;
+    padding: 20px;
+}
+#list{
+    padding: 20px;
+    display: grid;
+    column-gap: 1%;
+    grid-template-columns: 32.66% 32.66% 32.66%;
+    row-gap: 10px;
+}
+#list .item img{
+    width: 90%;
+    height:300px;
+    object-fit: cover;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+#list .item{
+    background-color: #fff5;
+    text-align: center;
+    border-radius: 10px;
+}
+#list .item .title{
+    font-weight: bold;
+}
+#list .item .price{
+    color: black;
+    letter-spacing: 1px;
+    padding: 20px;
+}
+    </style>
+<!-- NOT IMPORTANT, CSS ONLY -->
+
+</head>
+<body>
+
+<!-- IMPORTANT -->
+    <div class="container">
+        <form class="filter">
+            <div class="item">
+                <label>Category</label>
+                <select name="category">
+                    <option value="">---</option>
+                    <option value="Boots">Boots</option>
+                    <option value="Sneaker">Sneaker</option>
+                    <option value="Dress">Dress</option>
+                    <option value="Athletic">Athletic</option>
+                </select>
+            </div>
+            <div class="item">
+                <label>Color</label>
+                <select name="color">
+                    <option value="">---</option>
+                    <option value="white">white</option>
+                    <option value="black">black</option>
+                    <option value="grey">grey</option>
+                    <option value="blue">blue</option>
+                    <option value="brown">brown</option>
+                    <option value="red">red</option>
+                </select>
+            </div>
+            <div class="item">
+                <label>Brand</label>
+                <select name="brand">
+                    <option value="">---</option>
+                    <option value="Nike">Nike</option>
+                    <option value="Adidas">Adidas</option>
+                    <option value="Puma">Puma</option>
+                    <option value="Timberland">Timberland</option>
+                    <option value="Common Projects">Common Projects</option>
+                </select>
+            </div>
+            <div class="item">
+                <label>Min Price</label>
+                <input name="minPrice" type="number">
+            </div>
+            <div class="item">
+                <label>Max Price</label>
+                <input name="maxPrice" type="number">
+            </div>
+            <div class="item submit">
+                <button>Search</button>
+            </div>
+        </form>
+        <div class="countResults">
+            Found <b id="count">5</b> results
+        </div>
+        <div id="list">
+            
+        </div>
+    </div>
+<!-- IMPORTANT -->
+      
+
+<!-- IMPORTANT -->
+      <script>
+        let list = document.getElementById('list');
+        let filter = document.querySelector('.filter');
+        let count = document.getElementById('count');
+
+        let listProducts = [
+    {
+        id: 1,
+        name: 'Timberland Boots Black',
+        price: 100,
+        quantity: 0,
+        image: 'https://www.timberland.com.sg/wp-content/uploads/product/s23/8658A001-HERO-768x768.jpg',
+        nature: {
+            color: ['black'],
+            size: ['9', '10', '11'],
+            type: 'Boots',
+            brand: 'Timberland'
+        }
+    },
+    {
+        id: 2,
+        name: 'Common Projects Dress Brown',
+        price: 120,
+        quantiy: 30,
+        image: 'https://media.endclothing.com/media/f_auto,q_auto:eco,w_1024/prodmedia/media/catalog/product/2/4/24-03-2023-BLR_2375-3497_1_1.jpg',
+        nature: {
+            color: ['brown'],
+            size: ['7', '8', '9'],
+            type: 'Dress',
+            brand: 'Common Projects'
+        }
+    },
+    {
+        id: 3,
+        name: 'Nike Athletic Red',
+        price: 140,
+        quantiy: 30,
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4k7StDasEY2o7onuda-s-xB6UTEZdSkBmwBJ3Z2AmvALRmkcEWqc396nGNxrYre1rNOo&usqp=CAU',
+        nature: {
+            color: ['red'],
+            size: ['12', '13', '14'],
+            type: 'Athletic',
+            brand: 'Nike'
+        }
+    },
+    {
+        id: 4,
+        name: 'Adidas Sneaker Blue',
+        price: 160,
+        quantiy: 30,
+        image: 'https://assets.adidas.com/images/w_600,f_auto,q_auto/7a35d7a6f97b4e8380c0abd800ed3928_9366/Superstar_Shoes_Blue_FU9523_06_standard.jpg',
+        nature: {
+            color: ['blue'],
+            size: ['10', '11', '14'],
+            type: 'Sneaker',
+            brand: 'Adidas'
+        }
+    },
+    {
+        id: 5,
+        name: 'Puma Sneaker Black',
+        price: 180,
+        quantiy: 30,
+        image: 'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/394371/01/sv01/fnd/IND/fmt/png/Smashic-Unisex-Sneakers',
+        nature: {
+            color: ['black'],
+            size: ['7', '9', '11'],
+            type: 'Sneaker',
+            brand: 'Puma'
+        }
+    },
+    {
+        id: 6,
+        name: 'Nike Sneaker Black',
+        price: 200,
+        quantiy: 30,
+        image: 'https://i.insider.com/59c166d82488491d980855e8?width=750&format=jpeg&auto=webp',
+        nature: {
+            color: ['black'],
+            size: ['7', '8', '14'],
+            type: 'Sneaker',
+            brand: 'Nike'
+        }
+    },
+
+];
+
+let productFilter = listProducts;
+    showProduct(productFilter);
+    
+    filter.addEventListener('submit', function(event){
+        event.preventDefault();
+        let valueFilter = event.target.elements;
+        productFilter = listProducts.filter(item => {
+            // check category
+            if(valueFilter.category.value != ''){
+                if(item.nature.type != valueFilter.category.value){
+                    return false;
+                }
+            }
+            // check color
+            if(valueFilter.color.value != ''){
+                if(!item.nature.color.includes(valueFilter.color.value)){
+                    return false;
+                }
+            }
+            // check brand
+            if(valueFilter.brand.value != ''){
+                if(!item.nature.brand.includes(valueFilter.brand.value)){
+                    return false;
+                }
+            }
+            // check min price
+            if(valueFilter.minPrice.value != ''){
+                if(item.price < valueFilter.minPrice.value){
+                    return false;
+                }
+            }
+            //  check max price
+            if(valueFilter.maxPrice.value != ''){
+                if(item.price > valueFilter.maxPrice.value){
+                    return false;
+                }
+            }
+    
+    
+            return true;
+        })
+        showProduct(productFilter);
+    })
+    function showProduct(productFilter){
+        count.innerText = productFilter.length;
+        list.innerHTML = '';
+        productFilter.forEach(item => {
+            let newItem = document.createElement('div');
+            newItem.classList.add('item');
+
+            // create image
+            let newImage = new Image();
+            newImage.src = item.image;
+            newItem.appendChild(newImage);
+            // create name product
+            let newTitle = document.createElement('div');
+            newTitle.classList.add('title');
+            newTitle.innerText = item.name;
+            newItem.appendChild(newTitle);
+            // create price
+            let newPrice = document.createElement('div');
+            newPrice.classList.add('price');
+            newPrice.innerText = '$ ' + item.price.toLocaleString();
+            newItem.appendChild(newPrice);
+    
+            list.appendChild(newItem);
+        });
+    }
+      </script>
+<!-- IMPORTANT -->
+
+
+
+
+
+</body>
+</html>
