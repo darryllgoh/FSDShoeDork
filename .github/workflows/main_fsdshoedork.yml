@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'fsdshoedork'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_23056C713963434A8922A390B72FC21F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_950E27278AB34326A0D97CEDD9CDD6B5 }}
           package: '*.jar'
