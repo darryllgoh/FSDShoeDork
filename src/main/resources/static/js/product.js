@@ -101,7 +101,7 @@ addToBagButton.addEventListener('click', () => {
       })
       .catch((error) => {
           console.error('Error:', error);
-          alert("Error adding product to Cart");
+          alert("Please login to add to add to cart.");
       });
 
 });

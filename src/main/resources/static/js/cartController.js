@@ -64,10 +64,11 @@ const renderCart = (array) => {
 } / ${array[i].productColor}</p>
                         <p>US Size: ${array[i].sizeSelected}</p>
                     <div>
-                        <label for="${array[i].id}_${array[i].qty}" class="mt-4 mb-1">Quantity:</label>
+                        <label for="qty_${array[i].id}" class="mt-4 mb-1">Quantity:</label>
                         <br>
-                        <input type="number" name="quantity" value="${array[i].qty}" id="${array[i].id}_${array[i].qty}" min="1" max="10" class="px-1
-                        input-short">
+                        <input type="number" class="qtyInput" name="quantity" value="${array[i].qty}" id="qty_${array[i].id}"
+                        min="1" max="10" class="px-1
+                        input-short" onChange="updateCartById(this.id, this.value)">
                     </div>
                 </div>
                 <div class="col-3">
@@ -87,9 +88,9 @@ const renderCart = (array) => {
     document.querySelector("#cartList").innerHTML = details;
 }
 
-renderCartSummary = (data) => {
-    let shippingCost = data.shippingCost.toLocaleString('en');
-    (shippingCost == 0) ? shippingCost = "FREE" : "$" + shippingCost.toLocaleString('en');
+const renderCartSummary = (data) => {
+    let shippingCost = "$" + data.shippingCost.toLocaleString('en');
+    if (shippingCost == 0) { shippingCost = "FREE" };
     let subtotal = data.subtotal.toLocaleString('en');
     let taxAmount = data.taxAmount.toLocaleString('en');
     let totalCost = data.totalCost.toLocaleString('en');
@@ -124,7 +125,7 @@ getCartByUserId();
 
 
 // Deletes cart item on user click on delete button
-deleteCartById = clickedId => {
+const deleteCartById = clickedId => {
     // reassigns delete cart API to unique
     deleteCartAPI += clickedId;
     fetch(deleteCartAPI, { method: 'DELETE' })
@@ -146,3 +147,49 @@ deleteCartById = clickedId => {
     // reset deleteCartAPI to base string
     deleteCartAPI = deleteCartAPI.replace("/cart/" + clickedId, "/cart/");
 }
+
+// Update Cart Function that POSTS to database new qty based on cart id and re-renders cart page if successful
+const updateCartById = (id, value) => {
+    let cartId = id.replace("qty_", "");
+    console.log(cartId);
+    let cartUpdatedQty = value;
+    console.log(cartUpdatedQty);
+    const formData = new FormData();
+    formData.append('id', cartId);
+    formData.append('qty', cartUpdatedQty);
+
+    fetch(updateCartAPI, {
+        method: 'POST',
+        body: formData
+        })
+        .then(response => response.json())
+        .then(HttpStatusCode => {
+            console.log(HttpStatusCode);
+            if (HttpStatusCode == 201) {
+                // Fetch calculateCartCosts API again and re-renders cart summary if update cart is successful
+                fetch(getCartCostAPI)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Fetching: getCartCostAPI");
+                        console.log("Received data");
+                        console.log(data);
+
+                        renderCartSummary(data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            } else if (HttpStatusCode == 403){
+                alert("Please login to add to add to cart.");
+            } else if (HttpStatusCode == 404) {
+                alert("Cart not found.");
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert("Something went wrong. Please try again.");
+        });
+}
+

@@ -24,6 +24,7 @@ function addProduct(name, description, brand, category, usSizes, color, price, S
             if (response.ok) {
                 alert("Successfully Added Product!")
                 document.getElementById("productForm").reset();
+                window.location.href = "/upload";
             }
             else {
                alert("Please complete all fields before submission")
