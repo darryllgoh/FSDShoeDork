@@ -18,6 +18,7 @@ function addUser(username, password)
             if (response.ok) {
                 alert("Account successfully created!")
                 document.getElementById("registerForm").reset();
+                window.location.href = "/login";
             }
             else {
                alert("Something went wrong. Please try again")

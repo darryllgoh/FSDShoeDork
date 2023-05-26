@@ -121,39 +121,32 @@ public class ShoppingCartController {
     public int save(@RequestParam(name="Product_id", required = true) Integer Product_id,
                                        @RequestParam(name="sizeSelected", required = true) String sizeSelected,
                                        @RequestParam(name="qty", required = true) Integer qty) throws IOException {
-        System.out.println("1st step reached");
         // Returns Product object / null
         Product productOptional = productService.findById(Product_id);
-        System.out.println("2nd step reached");
+
         // Returns Not Found HTTP status if product is not found based on Product_id
         if (productOptional == null) {
             //return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something went wrong. Product not found.");
-            System.out.println("3rd step reached");
             return 404;
         }
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("4th step reached");
         // Returns Unauthorized HTTP status if User is not logged in
         if ( auth == null || auth instanceof AnonymousAuthenticationToken) {
             //return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You need to login to add items to cart.");
-            System.out.println("5th step reached");
             return 403;
         }
+
         //get username from authentication object
         String currentPrincipalName = auth.getName();
-        System.out.println("6th step reached");
 
         //get User_id from userService method
         Integer User_id = userService.findUserIdByUserName(currentPrincipalName);
-        System.out.println("7th step reached");
-
 
         // Create new Cart object, save it and return HTTP status OK
         CartDTO cartDTO = new CartDTO(Product_id, User_id, sizeSelected, qty);
-        System.out.println("8th step reached");
 
         shoppingCartService.save(new Cart(cartDTO));
-        System.out.println("9th step reached");
 
         // return ResponseEntity.status(HttpStatus.CREATED).body("Product added to cart successfully.");
         return 201;
@@ -176,5 +169,32 @@ public class ShoppingCartController {
         CartDTO cartDTO = new CartDTO(Product_id, User_id, sizeSelected, qty);
         shoppingCartService.save(new Cart(cartDTO));
         return ResponseEntity.status(HttpStatus.CREATED).body("Product added to cart successfully.");
+    }
+
+    @CrossOrigin
+    @PostMapping("/update")
+    public int save(@RequestParam(name="id", required = true) Integer id,
+//                    @RequestParam(name="Product_id", required = true) Integer Product_id,
+//                    @RequestParam(name="sizeSelected", required = true) String sizeSelected,
+                    @RequestParam(name="qty", required = true) Integer qty)
+            throws IOException {
+        // Returns cart object / null
+        Cart cartToUpdate = shoppingCartService.findCartById(id);
+
+        if (cartToUpdate == null) {
+            // Returns Not Found HTTP status if cart is not found based on cart_id
+            return 404;
+        }
+
+        cartToUpdate.setQty(qty);
+        shoppingCartService.save(cartToUpdate);
+        // Update cart object and return HTTP status OK
+        return 201;
+    }
+
+    @CrossOrigin
+    @GetMapping("/{id}")
+    public Cart findCartById(@PathVariable Integer id) {
+        return shoppingCartService.findCartById(id);
     }
 }
