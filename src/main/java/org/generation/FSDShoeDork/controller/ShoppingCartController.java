@@ -1,5 +1,10 @@
 package org.generation.FSDShoeDork.controller;
 
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
+
 import org.generation.FSDShoeDork.controller.dto.CartDTO;
 import org.generation.FSDShoeDork.repository.entity.Cart;
 import org.generation.FSDShoeDork.repository.entity.Product;
@@ -55,12 +60,20 @@ public class ShoppingCartController {
             //If productId is unique in HashSet, Prepend image folder directory to imageURL and add productId to HashSet
             //If not unique, do not modify imageURL
             HashSet<Integer> uniqueProductIds = new HashSet<>();
+
+            String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=shoedorkproductimages;AccountKey=I9q0aZO7p1FX18lSVaQ7gEZWzJKkBx4EyyDeD0d1f9JEcuWP+ygTQXCFxDUs279AD9yPae8LC/+f+AStUnDKFg==;EndpointSuffix=core.windows.net";
+            //System.out.println("Connect String: " + connectStr2);
+            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
+            String containerName = "productimage";
+            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+            BlobClient blobClientMain = containerClient.getBlobClient(productService.all().get(0).getImgMain());
+
             for (Cart cartItem: userCartItems) {
                 Integer productId = cartItem.getProductId();
                 if (!uniqueProductIds.contains(productId)) {
 
-                    String setURLMain = imageFolder + "/" + cartItem.getProductImgMain();
-                    cartItem.setProductImgMain(setURLMain);
+                    String newURLMain = blobClientMain.getAccountUrl() + "/" + containerName + "/" + cartItem.getProductImgMain();
+                    cartItem.setProductImgMain(newURLMain);
                     uniqueProductIds.add(productId);
                 }
             }
