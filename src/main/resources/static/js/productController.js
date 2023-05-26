@@ -135,7 +135,8 @@ function filterProduct() {
     if (filteredProducts.length == 0) {
         document.querySelector('.load-more-btn').innerHTML = `<p class="pt-3 pb-5 mb-5">No product matched your filter(s)</p>`;
     } else {
-        document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
+        document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg
+        rounded-pill py-3 px-5" onClick="resetFilter()">LOAD ALL PRODUCTS</button>`;
     }
 }
 
@@ -147,6 +148,8 @@ function resetFilter() {
     }
     productController = [];
     displayProducts(displayAllAPI);
+    document.querySelector('.load-more-btn').innerHTML = "";
+    //renderProductPage(productController);
 //    document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
 }
 
