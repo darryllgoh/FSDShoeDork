@@ -22,6 +22,11 @@ public class ShoppingCartMySQL implements ShoppingCartService {
         return this.shoppingCartRepository.findCartByUserId(userId);
     }
 
+
+    public Cart save(Cart cart) {
+        return this.shoppingCartRepository.save(cart);
+    }
+
     public double calculateSubtotalByUserId(Integer userId) {
         double subtotal = 0;
         ArrayList<Cart> userCartItems = shoppingCartRepository.findCartByUserId(userId);
@@ -65,23 +70,9 @@ public class ShoppingCartMySQL implements ShoppingCartService {
         return Math.round(totalCost * 100.00) / 100.00;
     }
 
-    @Override
     public void delete(int shoppingCartId) {
         this.shoppingCartRepository.deleteById(shoppingCartId);
     }
-//
-//    @Override
-//    public ArrayList<Cart> all() {
-//        ArrayList<Cart> result = new ArrayList<>();
-//        shoppingCartRepository.findAll().forEach(result::add);
-//        return result;
-//    }
-//
-//    public Cart findById(int shoppingCartId) {
-//        Optional<Cart> shoppingCartOptional = shoppingCartRepository.findById(shoppingCartId);
-//        Cart shoppingCartResponse = shoppingCartOptional.get();
-//        return shoppingCartResponse;
-//    }
-//
+
 
 }

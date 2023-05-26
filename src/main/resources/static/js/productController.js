@@ -33,6 +33,7 @@ const displayProducts = (API) => {
 
                 productController.push(productObject);
             })
+        sortList(compareNewToOld);
         renderProductPage(productController);
         localStorage.removeItem("categoryClicked");
         })
@@ -74,7 +75,7 @@ const displayProductDetails = (index) => {
     localStorage.removeItem("productDetails");
 
     // Add product details (reference will change after fetch API is implemented)
-    //localStorage.setItem("productDetails",JSON.stringify(storedData[index]));
+    // localStorage.setItem("productDetails",JSON.stringify(storedData[index]));
     // used storedData to stringify through to product page
     localStorage.setItem("productDetails",JSON.stringify(productController[index]));
 }
@@ -144,5 +145,55 @@ function resetFilter() {
     }
     productController = [];
     displayProducts(displayAllAPI);
-    document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
+//    document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
 }
+
+// SORT FUNCTIONS
+function comparePriceAsc(x,y) {
+            return x.price - y.price;
+}
+
+function comparePriceDesc(x,y) {
+            return y.price - x.price;
+}
+
+function compareOldToNew(x,y) {
+            return x.id - y.id;
+}
+
+function compareNewToOld (x,y) {
+            return y.id - x.id;
+}
+
+const sortList = compareFunction => {
+    productController.sort(compareFunction);
+    console.log(productController);
+}
+
+// Target Drop down menu items to add event listeners to each one of them
+const dropDownItems = document.querySelectorAll('.dropdown-item');
+dropDownItems.forEach(item => {
+    item.addEventListener('click', (event) => {
+
+        // Menu item will trigger an event on click, where its ID will be retrieved and
+        // compared in a switch case to determine which sortList pass through function to apply
+        const optionId = event.target.id;
+        switch (optionId) {
+            case "priceLowToHigh":
+                sortList(comparePriceAsc);
+                break;
+            case "priceHighToLow":
+                sortList(comparePriceDesc);
+                break;
+            case "newestToOldest":
+                sortList(compareNewToOld);
+                break;
+            case "oldestToNewest":
+                sortList(compareOldToNew);
+                break;
+            default:
+                sortList(compareNewToOld);
+        }
+        renderProductPage(productController);
+    });
+});

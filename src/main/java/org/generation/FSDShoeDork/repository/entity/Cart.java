@@ -1,7 +1,7 @@
 package org.generation.FSDShoeDork.repository.entity;
 
 import jakarta.persistence.*;
-//import org.generation.FSDShoeDork.controller.dto.CartDTO;
+import org.generation.FSDShoeDork.controller.dto.CartDTO;
 
 @Entity
 public class Cart {
@@ -24,12 +24,12 @@ public class Cart {
 
     public Cart() {}
 
-//    public Cart(CartDTO cartDTO) {
-//        this.product = cartDTO.getProduct();
-//        this.user = cartDTO.getUser();
-//        this.sizeSelected = cartDTO.getSizeSelected();
-//        this.qty = cartDTO.getQty();
-//    };
+    public Cart(CartDTO cartDTO) {
+        this.Product_id = cartDTO.getProduct_id();
+        this.User_id = cartDTO.getUser_id();
+        this.sizeSelected = cartDTO.getSizeSelected();
+        this.qty = cartDTO.getQty();
+    };
 
     public Integer getId() {
         return id;
