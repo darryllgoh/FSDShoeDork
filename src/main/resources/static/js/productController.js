@@ -5,6 +5,7 @@ getCategoryAPI = 'http://localhost:8080/product/cat/' + getClickedLink;
 
 //Initialize productController
 let productController = [];
+let filteredProducts = [];
 
 //GET API to get all products in product database table and display on website
 const displayProducts = (API) => {
@@ -34,6 +35,7 @@ const displayProducts = (API) => {
                 productController.push(productObject);
             })
         sortList(compareNewToOld);
+        filteredProducts = productController;
         renderProductPage(productController);
         localStorage.removeItem("categoryClicked");
         })
@@ -77,7 +79,7 @@ const displayProductDetails = (index) => {
     // Add product details (reference will change after fetch API is implemented)
     // localStorage.setItem("productDetails",JSON.stringify(storedData[index]));
     // used storedData to stringify through to product page
-    localStorage.setItem("productDetails",JSON.stringify(productController[index]));
+    localStorage.setItem("productDetails",JSON.stringify(filteredProducts[index]));
 }
 
 // FILTERS
@@ -88,7 +90,7 @@ filter.addEventListener('change', filterProduct);
 
 // This function is called onclick for every filter checkbox
 function filterProduct() {
-
+    filteredProducts = [];
     // Assign variable for an array of category checkboxes that are checked
     const categoryFilters = Array.from(document.querySelectorAll('input[name="category"]:checked'));
 
@@ -98,7 +100,7 @@ function filterProduct() {
     // Assign variable for an array of brand checkboxes that are checked
     const brandFilters = Array.from(document.querySelectorAll('input[name="brand"]:checked'));
 
-    const filteredProducts = [];
+
 
     /*
     For each product in the productController, isMatched = false by default, unless we find a match in ANY of each if
@@ -123,14 +125,14 @@ function filterProduct() {
         if (isMatched) {
             filteredProducts.push(product);
         }
-        productController = filteredProducts;
+        //productController = filteredProducts;
     });
 
     // Update the product list with the filtered products
-    renderProductPage(productController);
+    renderProductPage(filteredProducts);
 
     // changes between "Load more products" button to No Result output depending on filter result
-    if (productController.length == 0) {
+    if (filteredProducts.length == 0) {
         document.querySelector('.load-more-btn').innerHTML = `<p class="pt-3 pb-5 mb-5">No product matched your filter(s)</p>`;
     } else {
         document.querySelector('.load-more-btn').innerHTML = `<button type="button" class="btn btn-dark btn-lg rounded-pill py-3 px-5">LOAD MORE PRODUCTS</button>`;
