@@ -34,8 +34,8 @@ const displayProducts = (API) => {
 
                 productController.push(productObject);
             })
-        sortList(compareNewToOld);
         filteredProducts = productController;
+        sortList(compareNewToOld);
         renderProductPage(productController);
         localStorage.removeItem("categoryClicked");
         })
@@ -171,8 +171,8 @@ function compareNewToOld (x,y) {
 }
 
 const sortList = compareFunction => {
-    productController.sort(compareFunction);
-    console.log(productController);
+    filteredProducts.sort(compareFunction);
+    console.log(filteredProducts);
 }
 
 // Target Drop down menu items to add event listeners to each one of them
@@ -199,6 +199,6 @@ dropDownItems.forEach(item => {
             default:
                 sortList(compareNewToOld);
         }
-        renderProductPage(productController);
+        renderProductPage(filteredProducts);
     });
 });
