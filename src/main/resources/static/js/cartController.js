@@ -89,8 +89,8 @@ const renderCart = (array) => {
 }
 
 const renderCartSummary = (data) => {
-    let shippingCost = data.shippingCost.toLocaleString('en');
-    (shippingCost == 0) ? shippingCost = "FREE" : "$" + shippingCost.toLocaleString('en');
+    let shippingCost = "$" + data.shippingCost.toLocaleString('en');
+    if (shippingCost == 0) { shippingCost = "FREE" };
     let subtotal = data.subtotal.toLocaleString('en');
     let taxAmount = data.taxAmount.toLocaleString('en');
     let totalCost = data.totalCost.toLocaleString('en');
