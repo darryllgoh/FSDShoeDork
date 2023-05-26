@@ -10,6 +10,7 @@
 //const getCartCostAPI = 'http://localhost:8080/cart/costbyuser';
 //const getCartLegacyAPI = 'http://localhost:8080/cart/cartbyuserlegacy';     //Testing only
 //let deleteCartAPI = 'http://localhost:8080/cart/' // + getDeleteId;
+//const addUserAPI= 'http://localhost:8080/user/add';
 
 //production APIs
 const addAPI = 'https://fsdshoedork.azurewebsites.net/product/add';
@@ -23,3 +24,4 @@ const getCartAPI = 'https://fsdshoedork.azurewebsites.net/cart/cartbyuser';
 const getCartCostAPI = 'https://fsdshoedork.azurewebsites.net/cart/costbyuser';
 const getCartLegacyAPI = 'https://fsdshoedork.azurewebsites.net/cart/cartbyuserlegacy';
 let deleteCartAPI = 'https://fsdshoedork.azurewebsites.net/cart/' // + getDeleteId;
+const addUserAPI= 'https://fsdshoedork.azurewebsites.net/user/add';

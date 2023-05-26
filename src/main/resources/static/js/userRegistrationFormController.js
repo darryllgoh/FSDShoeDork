@@ -1,15 +1,10 @@
-//development APIs
-const addAPI= 'http://localhost:8080/user/add';
-const displayAPI = 'http://localhost:8080/product/all';
-
-
 function addUser(username, password)
 {
    const formData = new FormData();
    formData.append('username', username);
    formData.append('password', password);
 
-  fetch(addAPI, {
+  fetch(addUserAPI, {
         method: 'POST',
         body: formData
         })
