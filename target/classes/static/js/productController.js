@@ -1,7 +1,8 @@
 // To get category link clicked on index page from localStorage (if any)
 let getClickedLink = null;
 getClickedLink = localStorage.getItem("categoryClicked");
-getCategoryAPI = 'http://localhost:8080/product/cat/' + getClickedLink;
+getCategoryAPI = 'https://fsdshoedork.azurewebsites.net/product/cat/';
+getCategoryAPI += getClickedLink;
 
 //Initialize productController
 let productController = [];

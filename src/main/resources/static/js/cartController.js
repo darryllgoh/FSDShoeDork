@@ -180,7 +180,7 @@ const updateCartById = (id, value) => {
                         console.log(error);
                     });
             } else if (HttpStatusCode == 403){
-                alert("Please login to add to add to cart.");
+                alert("Please login to add to cart.");
             } else if (HttpStatusCode == 404) {
                 alert("Cart not found.");
             } else {
