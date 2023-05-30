@@ -1,0 +1,30 @@
+/* Reduce length of quantity counter */
+.input-short {
+    width: 45px;
+}
+
+/* Dustbin icon position */
+.delete-btn {
+    border: none;
+    background-color: #fff;
+    position: relative;
+    top: 80px;
+    left: -5px;
+}
+
+/* Header position */
+.bag-header span p {
+    display: inline-block;
+}
+
+/* RWD */
+@media (max-width: 767px) {
+    .word-break {
+      word-wrap: break-word;
+    }
+    .delete-btn {
+        top: 105px;
+    }
+  }
+  
+

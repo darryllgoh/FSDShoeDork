@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured</title>
+</head>
+<body>
+    <div th:fragment="featured" class="container-fluid my-4 my-md-5 px-3 px-md-4">
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/abef70144114301.6286624ea56a4.gif" alt="" class="img-fluid w-100">
+            </div>
+
+            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center featured-content">
+                <p class="fst-italic pt-3 mb-1 lmt-edt">Limited Edition</p>
+                <h1>BETTER DURABILITY, MORE MILES</h1>
+                <p class="content-p mb-2 mb-md-3">Lace up and feel the legacy. Produced at the cross section of art, music and culture, this champion running shoe helped define the '90s. Worn by presidents, revolutionised through collabs and celebrated through rare colourways.</p>
+                <a th:href="@{shop}"><button class="btn btn-dark rounded-pill px-4 py-3 featured-btn" type="submit">SHOP NOW</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

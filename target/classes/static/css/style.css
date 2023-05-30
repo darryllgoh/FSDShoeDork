@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box
+}
+
+/* @supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sticky-top2 {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 75px;
+      z-index: 1019;
+    }
+  }  */
+
+/* Hero Carousel */
+/* 
+  .c-item {
+    height: 82vh;
+  }
+
+  .c-img {
+    height: 100%;
+    object-fit: cover;
+  }
+*/
+/* End Of Hero Carousel */
+  
+
+/* Search Bar */
+/* 
+  .search-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .search-container input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 200px;
+    background-color: #eeeeee;
+  }
+  
+  .search-container button[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .search-container button[type="submit"] i {
+    font-size: 16px;
+    color: #333;
+  }
+ */
+/* End Of Search Bar */
+
+
+
+/* Upload Page Placeholder Opacity */
+
+/* 
+  input.form-control::placeholder {
+    opacity: .5;}
+ */
+
+/* End Of Upload Page Placeholder Opacity */
+  

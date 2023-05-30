@@ -1,0 +1,41 @@
+.featured-btn {
+    font-weight: bold;
+    border: none;
+}
+
+.featured-content h1 {
+    font-size:72px;
+}
+
+.featured-content .content-p {
+    font-size: 18px;
+}
+
+.featured-content button {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.lmt-edt {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+}
+
+@media screen and (max-width: 576px) {
+    .featured-content h1 {
+        font-size:36px;
+    }
+
+    .featured-content .content-p {
+        font-size: 14px;
+    }
+
+    .lmt-edt {
+        font-size: 20px;
+    }
+
+    .featured-content button {
+        font-size:12px;
+    }
+}
