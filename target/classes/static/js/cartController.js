@@ -47,7 +47,8 @@ const renderCart = (array) => {
     (totalQty < 2) ? plurality = "item" : plurality = "items";
 
     let details = `
-    <h2 class="bag-header">My Bag <span><p>(${totalQty} ${plurality})</p></span></h2>
+    <h2 class="bag-header">My Bag</h2>
+    //<h2 class="bag-header">My Bag <span><p>(${totalQty} ${plurality})</p></span></h2>
     `;
     // Do a for loop to iterate through the rest of cart items
     for (let i = 0; i < array.length; i++) {
