@@ -13,15 +13,15 @@
 //const addUserAPI= 'http://localhost:8080/user/add';
 
 //production APIs
-const addAPI = 'https://fsdshoedork.azurewebsites.net/product/add';
-const displayAllAPI = 'https://fsdshoedork.azurewebsites.net/product/all';
-let getCategoryAPI = 'https://fsdshoedork.azurewebsites.net/product/cat/' //+ getClickedLink;
-let getProductAPI = 'https://fsdshoedork.azurewebsites.net/product/' // + getClickedId;
-const addCartAPI = 'https://fsdshoedork.azurewebsites.net/cart/add';
-//const addLegacyAPI = 'http://fsdshoedork.azurewebsites.net/cart/addlegacy'     //Testing only
-const updateCartAPI = 'https://fsdshoedork.azurewebsites.net/cart/update';
-const getCartAPI = 'https://fsdshoedork.azurewebsites.net/cart/cartbyuser';
-const getCartCostAPI = 'https://fsdshoedork.azurewebsites.net/cart/costbyuser';
-const getCartLegacyAPI = 'https://fsdshoedork.azurewebsites.net/cart/cartbyuserlegacy';
-let deleteCartAPI = 'https://fsdshoedork.azurewebsites.net/cart/' // + getDeleteId;
-const addUserAPI= 'https://fsdshoedork.azurewebsites.net/user/add';
+const addAPI = 'https://shoedork.azurewebsites.net/product/add';
+const displayAllAPI = 'https://shoedork.azurewebsites.net/product/all';
+let getCategoryAPI = 'https://shoedork.azurewebsites.net/product/cat/' //+ getClickedLink;
+let getProductAPI = 'https://shoedork.azurewebsites.net/product/' // + getClickedId;
+const addCartAPI = 'https://shoedork.azurewebsites.net/cart/add';
+//const addLegacyAPI = 'http://shoedork.azurewebsites.net/cart/addlegacy'     //Testing only
+const updateCartAPI = 'https://shoedork.azurewebsites.net/cart/update';
+const getCartAPI = 'https://shoedork.azurewebsites.net/cart/cartbyuser';
+const getCartCostAPI = 'https://shoedork.azurewebsites.net/cart/costbyuser';
+const getCartLegacyAPI = 'https://shoedork.azurewebsites.net/cart/cartbyuserlegacy';
+let deleteCartAPI = 'https://shoedork.azurewebsites.net/cart/' // + getDeleteId;
+const addUserAPI= 'https://shoedork.azurewebsites.net/user/add';
