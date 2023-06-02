@@ -30,12 +30,12 @@ public class FileUploadUtil {
 
         //upload to Azure
         /* This is the setup using Azure storage */
-        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=shoedorkproductimages;AccountKey=I9q0aZO7p1FX18lSVaQ7gEZWzJKkBx4EyyDeD0d1f9JEcuWP+ygTQXCFxDUs279AD9yPae8LC/+f+AStUnDKFg==;EndpointSuffix=core.windows.net";
+        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=shoedorkproductimage;AccountKey=o6UrXDaUhTYc2auE+3XVpWejuOGb/yc9GWU7k/E1hG6KtlELH/lx7aIb2yneOff22eq/dKaTVbLs+AStmhDxPQ==;EndpointSuffix=core.windows.net";
         //create a connection between the web app and storage container created in Azure server
         BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
 
         //specify which container we want to get the images from
-        String containerName = "productimage";
+        String containerName = "prodimage";
 
         //to get the container with images
         BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);

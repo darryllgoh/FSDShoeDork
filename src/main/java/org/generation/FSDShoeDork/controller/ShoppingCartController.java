@@ -61,10 +61,10 @@ public class ShoppingCartController {
             //If not unique, do not modify imageURL
             HashSet<Integer> uniqueProductIds = new HashSet<>();
 
-            String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=shoedorkproductimages;AccountKey=I9q0aZO7p1FX18lSVaQ7gEZWzJKkBx4EyyDeD0d1f9JEcuWP+ygTQXCFxDUs279AD9yPae8LC/+f+AStUnDKFg==;EndpointSuffix=core.windows.net";
+            String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=shoedorkproductimage;AccountKey=o6UrXDaUhTYc2auE+3XVpWejuOGb/yc9GWU7k/E1hG6KtlELH/lx7aIb2yneOff22eq/dKaTVbLs+AStmhDxPQ==;EndpointSuffix=core.windows.net";
             //System.out.println("Connect String: " + connectStr2);
             BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
-            String containerName = "productimage";
+            String containerName = "prodimage";
             BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
             BlobClient blobClientMain = containerClient.getBlobClient(productService.all().get(0).getImgMain());
 
