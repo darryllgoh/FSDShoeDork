@@ -87,14 +87,11 @@ const renderCartSummary = (data) => {
 
     // Do a for loop to sum up qty for each cart item and determine plurality of "item"
     let plurality = "";
-    let totalQty = 0;
-    for (let j = 0; j < array.length; j++) {
-        totalQty += array[j].qty;
-    }
+    let totalQty = data.cartQty;
 
     (totalQty < 2) ? plurality = "item" : plurality = "items";
 
-    document.querySelector("#mybag").innerHTML = <h2 class="bag-header">My Bag <span><p>(${totalQty} ${plurality})</p></span></h2>;
+    document.querySelector("#mybag").innerHTML = `<h2 class="bag-header">My Bag <span><p>(${totalQty} ${plurality})</p></span></h2>`;
 
     orderSummary = `
         <h3>Order Summary</h3>
