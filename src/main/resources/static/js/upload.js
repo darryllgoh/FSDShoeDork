@@ -5,7 +5,7 @@ let storeImageMain = "";
 let storeImageHover = "";
 
 //When user clicks on 'Save Item':
-//1) store all the inputs into variables
+//1) store all the inputs into variables.
 //2) do validation
 //3) calls a function from the productController.js to access the API to add items to the database
 
