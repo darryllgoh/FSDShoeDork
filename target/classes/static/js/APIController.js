@@ -13,15 +13,15 @@
 //const addUserAPI= 'http://localhost:8080/user/add';
 
 //production APIs
-const addAPI = 'https://shoedorkdg.azurewebsites.net/product/add';
-const displayAllAPI = 'https://shoedorkdg.azurewebsites.net/product/all';
-let getCategoryAPI = 'https://shoedorkdg.azurewebsites.net/product/cat/' //+ getClickedLink;
-let getProductAPI = 'https://shoedorkdg.azurewebsites.net/product/' // + getClickedId;
-const addCartAPI = 'https://shoedorkdg.azurewebsites.net/cart/add';
+const addAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/product/add';
+const displayAllAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/product/all';
+let getCategoryAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/product/cat/' //+ getClickedLink;
+let getProductAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/product/' // + getClickedId;
+const addCartAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/cart/add';
 //const addLegacyAPI = 'http://shoedorkdg.azurewebsites.net/cart/addlegacy'     //Testing only
-const updateCartAPI = 'https://shoedorkdg.azurewebsites.net/cart/update';
-const getCartAPI = 'https://shoedorkdg.azurewebsites.net/cart/cartbyuser';
-const getCartCostAPI = 'https://shoedorkdg.azurewebsites.net/cart/costbyuser';
-const getCartLegacyAPI = 'https://shoedorkdg.azurewebsites.net/cart/cartbyuserlegacy';
-let deleteCartAPI = 'https://shoedorkdg.azurewebsites.net/cart/' // + getDeleteId;
-const addUserAPI= 'https://shoedorkdg.azurewebsites.net/user/add';
+const updateCartAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/cart/update';
+const getCartAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/cart/cartbyuser';
+const getCartCostAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/cart/costbyuser';
+const getCartLegacyAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/cart/cartbyuserlegacy';
+let deleteCartAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/cart/' // + getDeleteId;
+const addUserAPI= 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/user/add';

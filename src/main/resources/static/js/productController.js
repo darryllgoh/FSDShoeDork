@@ -1,7 +1,7 @@
 // To get category link clicked on index page from localStorage (if any)
 let getClickedLink = null;
 getClickedLink = localStorage.getItem("categoryClicked");
-getCategoryAPI = 'https://shoedorkdg.azurewebsites.net/product/cat/';
+getCategoryAPI = 'http://awsdeployv2shoedork.ap-southeast-1.elasticbeanstalk.com/product/cat/';
 getCategoryAPI += getClickedLink;
 
 //Initialize productController
