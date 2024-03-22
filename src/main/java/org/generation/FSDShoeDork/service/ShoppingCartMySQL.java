@@ -27,6 +27,12 @@ public class ShoppingCartMySQL implements ShoppingCartService {
         return this.shoppingCartRepository.save(cart);
     }
 
+    public Cart findCartById(int cartId) {
+        Optional<Cart> cart = shoppingCartRepository.findById(cartId);
+        Cart cartResponse = cart.get();
+        return cartResponse;
+    }
+
     public double calculateSubtotalByUserId(Integer userId) {
         double subtotal = 0;
         ArrayList<Cart> userCartItems = shoppingCartRepository.findCartByUserId(userId);

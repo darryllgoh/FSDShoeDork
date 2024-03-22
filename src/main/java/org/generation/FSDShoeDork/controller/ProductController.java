@@ -1,9 +1,9 @@
 package org.generation.FSDShoeDork.controller;
 
-//import com.azure.storage.blob.BlobClient;
-//import com.azure.storage.blob.BlobContainerClient;
-//import com.azure.storage.blob.BlobServiceClient;
-//import com.azure.storage.blob.BlobServiceClientBuilder;
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
 
 import org.generation.FSDShoeDork.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,33 +44,36 @@ public class ProductController {
     public Iterable<Product> getProduct()
     {
         //To display images from local folder
-        for (Product image: productService.all())
-        {
-            // productImages/commonProjects-LugSoleLoafer1.jpg
-            String setURLMain = imageFolder + "/" + image.getImgMain();
-            image.setImgMain(setURLMain);
-            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
-            String setURLHover = imageFolder + "/" + image.getImgHover();
-            image.setImgHover(setURLHover);
-        }
+//        for (Product image: productService.all())
+//        {
+//            // productImages/commonProjects-LugSoleLoafer1.jpg
+//            String setURLMain = imageFolder + "/" + image.getImgMain();
+//            image.setImgMain(setURLMain);
+//            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
+//            String setURLHover = imageFolder + "/" + image.getImgHover();
+//            image.setImgHover(setURLHover);
+//
+//        }
 
 
         /* To display images from the Server Container */
-//        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=productimagedarryllgoh;AccountKey=NbtYS7PnjSzjZzyh3MqxA+yhJG54DEC76458ym0lxao/cH0Ib/C1fQreSdmRPR99uaYV0t0lqiwZ+AStxyIybA==;EndpointSuffix=core.windows.net";
-//        //System.out.println("Connect String: " + connectStr2);
-//        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
-//        String containerName = "prodimage";
-//        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-//        BlobClient blobClient = containerClient.getBlobClient(itemService.all().get(0).getImageUrl());
-//
-//
-//        //Loop through the ArrayList of itemService.all() and append the Blob url to the imageUrl
-//        for (Item image: itemService.all())
-//        {
-//            //path: productimagespring/prodimage/t-shirt.jpg
-//            String setURL = blobClient.getAccountUrl() + "/" + containerName + "/" + image.getImageUrl();
-//            image.setImageUrl(setURL);
-//        }
+        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=shoedorkproductimages;AccountKey=I9q0aZO7p1FX18lSVaQ7gEZWzJKkBx4EyyDeD0d1f9JEcuWP+ygTQXCFxDUs279AD9yPae8LC/+f+AStUnDKFg==;EndpointSuffix=core.windows.net";
+        //System.out.println("Connect String: " + connectStr2);
+        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
+        String containerName = "productimage";
+        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+        BlobClient blobClientMain = containerClient.getBlobClient(productService.all().get(0).getImgMain());
+        BlobClient blobClientHover = containerClient.getBlobClient(productService.all().get(0).getImgHover());
+
+        //Loop through the ArrayList of itemService.all() and append the Blob url to the imageUrl
+        for (Product image: productService.all())
+        {
+            //path: productimagespring/prodimage/t-shirt.jpg
+            String newURLMain = blobClientMain.getAccountUrl() + "/" + containerName + "/" + image.getImgMain();
+            image.setImgMain(newURLMain);
+            String newURLHover = blobClientHover.getAccountUrl() + "/" + containerName + "/" + image.getImgHover();
+            image.setImgHover(newURLHover);
+        }
 
         //return in controller represents a response to the client
         return this.productService.all();
@@ -132,32 +135,34 @@ public class ProductController {
     @GetMapping("/cat/{category}")
     public Iterable<Product> getProductByCategory(@PathVariable String category) {
         //To display images from local folder
-        for (Product product: productService.getProductByCategory(category))
-        {
-            // productImages/commonProjects-LugSoleLoafer1.jpg
-            String newURLMain = imageFolder + "/" + product.getImgMain();
-            product.setImgMain(newURLMain);
-            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
-            String newURLHover = imageFolder + "/" + product.getImgHover();
-            product.setImgHover(newURLHover);
-        }
+//        for (Product product: productService.getProductByCategory(category))
+//        {
+//            // productImages/commonProjects-LugSoleLoafer1.jpg
+//            String newURLMain = imageFolder + "/" + product.getImgMain();
+//            product.setImgMain(newURLMain);
+//            // productImages/Image/commonProjects-LugSoleLoafer2.jpg
+//            String newURLHover = imageFolder + "/" + product.getImgHover();
+//            product.setImgHover(newURLHover);
+//        }
 
         /* To display images from the Server Container */
-//        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=productimagedarryllgoh;AccountKey=NbtYS7PnjSzjZzyh3MqxA+yhJG54DEC76458ym0lxao/cH0Ib/C1fQreSdmRPR99uaYV0t0lqiwZ+AStxyIybA==;EndpointSuffix=core.windows.net";
-//        //System.out.println("Connect String: " + connectStr2);
-//        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
-//        String containerName = "prodimage";
-//        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-//        BlobClient blobClient = containerClient.getBlobClient(itemService.all().get(0).getImageUrl());
-//
-//
-//        //Loop through the ArrayList of itemService.all() and append the Blob url to the imageUrl
-//        for (Item image: itemService.all())
-//        {
-//            //path: productimagespring/prodimage/t-shirt.jpg
-//            String setURL = blobClient.getAccountUrl() + "/" + containerName + "/" + image.getImageUrl();
-//            image.setImageUrl(setURL);
-//        }
+        String connectStr2 = "DefaultEndpointsProtocol=https;AccountName=shoedorkproductimages;AccountKey=I9q0aZO7p1FX18lSVaQ7gEZWzJKkBx4EyyDeD0d1f9JEcuWP+ygTQXCFxDUs279AD9yPae8LC/+f+AStUnDKFg==;EndpointSuffix=core.windows.net";
+        //System.out.println("Connect String: " + connectStr2);
+        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectStr2).buildClient();
+        String containerName = "productimage";
+        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+        BlobClient blobClientMain = containerClient.getBlobClient(productService.all().get(0).getImgMain());
+        BlobClient blobClientHover = containerClient.getBlobClient(productService.all().get(0).getImgHover());
+
+        //Loop through the ArrayList of itemService.all() and append the Blob url to the imageUrl
+        for (Product image: productService.all())
+        {
+            //path: productimagespring/prodimage/t-shirt.jpg
+            String newURLMain = blobClientMain.getAccountUrl() + "/" + containerName + "/" + image.getImgMain();
+            image.setImgMain(newURLMain);
+            String newURLHover = blobClientHover.getAccountUrl() + "/" + containerName + "/" + image.getImgHover();
+            image.setImgHover(newURLHover);
+        }
 
         //return in controller represents a response to the client
         return this.productService.getProductByCategory(category);
